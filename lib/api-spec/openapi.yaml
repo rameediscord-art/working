@@ -3,20 +3,32 @@ info:
   # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: NexusHub Admin API specification
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: admin-auth
+    description: Admin authentication
+  - name: admin-plans
+    description: Membership plans management
+  - name: admin-packs
+    description: Starter packs management
+  - name: admin-settings
+    description: Site settings
+  - name: admin-dashboard
+    description: Dashboard overview
+  - name: admin-audit
+    description: Audit logs
+
 paths:
   /healthz:
     get:
       operationId: healthCheck
       tags: [health]
       summary: Health check
-      description: Returns server health status
       responses:
         "200":
           description: Healthy
@@ -24,13 +36,628 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  /admin/auth/login:
+    post:
+      operationId: adminLogin
+      tags: [admin-auth]
+      summary: Admin login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AdminLoginInput"
+      responses:
+        "200":
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResult"
+        "401":
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "423":
+          description: Account locked
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /admin/auth/logout:
+    post:
+      operationId: adminLogout
+      tags: [admin-auth]
+      summary: Admin logout
+      responses:
+        "200":
+          description: Logged out
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessResponse"
+
+  /admin/auth/me:
+    get:
+      operationId: getAdminMe
+      tags: [admin-auth]
+      summary: Get current admin user
+      responses:
+        "200":
+          description: Current admin
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminUser"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /admin/auth/change-password:
+    post:
+      operationId: adminChangePassword
+      tags: [admin-auth]
+      summary: Change admin password
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChangePasswordInput"
+      responses:
+        "200":
+          description: Password changed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessResponse"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /admin/dashboard:
+    get:
+      operationId: getAdminDashboard
+      tags: [admin-dashboard]
+      summary: Get dashboard overview stats
+      responses:
+        "200":
+          description: Dashboard stats
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DashboardStats"
+
+  /admin/plans:
+    get:
+      operationId: listAdminPlans
+      tags: [admin-plans]
+      summary: List all membership plans
+      responses:
+        "200":
+          description: List of plans
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/MembershipPlan"
+    post:
+      operationId: createAdminPlan
+      tags: [admin-plans]
+      summary: Create a membership plan
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MembershipPlanInput"
+      responses:
+        "201":
+          description: Plan created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MembershipPlan"
+
+  /admin/plans/{id}:
+    patch:
+      operationId: updateAdminPlan
+      tags: [admin-plans]
+      summary: Update a membership plan
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MembershipPlanUpdate"
+      responses:
+        "200":
+          description: Plan updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MembershipPlan"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+    delete:
+      operationId: deleteAdminPlan
+      tags: [admin-plans]
+      summary: Delete a membership plan
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+  /admin/packs:
+    get:
+      operationId: listAdminPacks
+      tags: [admin-packs]
+      summary: List all starter packs
+      responses:
+        "200":
+          description: List of packs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/StarterPack"
+    post:
+      operationId: createAdminPack
+      tags: [admin-packs]
+      summary: Create a starter pack
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StarterPackInput"
+      responses:
+        "201":
+          description: Pack created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StarterPack"
+
+  /admin/packs/{id}:
+    patch:
+      operationId: updateAdminPack
+      tags: [admin-packs]
+      summary: Update a starter pack
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StarterPackUpdate"
+      responses:
+        "200":
+          description: Pack updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StarterPack"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+    delete:
+      operationId: deleteAdminPack
+      tags: [admin-packs]
+      summary: Delete a starter pack
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+  /admin/settings:
+    get:
+      operationId: getAdminSettings
+      tags: [admin-settings]
+      summary: Get site settings
+      responses:
+        "200":
+          description: Site settings
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SiteSettings"
+    patch:
+      operationId: updateAdminSettings
+      tags: [admin-settings]
+      summary: Update site settings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SiteSettingsUpdate"
+      responses:
+        "200":
+          description: Settings updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SiteSettings"
+
+  /admin/audit-logs:
+    get:
+      operationId: listAuditLogs
+      tags: [admin-audit]
+      summary: List audit logs
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+        - name: offset
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Audit logs
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuditLogList"
+
 components:
   schemas:
     HealthStatus:
       type: object
+      required: [status]
       properties:
         status:
           type: string
-      required:
-        - status
 
+    ErrorResponse:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: string
+
+    SuccessResponse:
+      type: object
+      required: [success]
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+
+    AdminLoginInput:
+      type: object
+      required: [username, password]
+      properties:
+        username:
+          type: string
+          minLength: 1
+        password:
+          type: string
+          minLength: 1
+
+    AuthResult:
+      type: object
+      required: [token, user]
+      properties:
+        token:
+          type: string
+        user:
+          $ref: "#/components/schemas/AdminUser"
+
+    AdminUser:
+      type: object
+      required: [id, username, email, role, totpEnabled, sessionTimeoutMinutes, createdAt]
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+        email:
+          type: string
+        role:
+          type: string
+          enum: [super_admin, editor]
+        totpEnabled:
+          type: boolean
+        sessionTimeoutMinutes:
+          type: integer
+        createdAt:
+          type: string
+
+    ChangePasswordInput:
+      type: object
+      required: [currentPassword, newPassword]
+      properties:
+        currentPassword:
+          type: string
+          minLength: 1
+        newPassword:
+          type: string
+          minLength: 8
+
+    DashboardStats:
+      type: object
+      required: [totalPlans, activePlans, totalPacks, activePacks, recentActivity]
+      properties:
+        totalPlans:
+          type: integer
+        activePlans:
+          type: integer
+        totalPacks:
+          type: integer
+        activePacks:
+          type: integer
+        maintenanceMode:
+          type: boolean
+        recentActivity:
+          type: array
+          items:
+            $ref: "#/components/schemas/AuditLog"
+
+    MembershipPlan:
+      type: object
+      required: [id, name, price, billingCycle, description, features, checkoutUrl, isActive, isFeatured, createdAt, updatedAt]
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        price:
+          type: string
+        billingCycle:
+          type: string
+          enum: [monthly, yearly, lifetime, one_time]
+        description:
+          type: string
+        features:
+          type: array
+          items:
+            type: string
+        checkoutUrl:
+          type: string
+        isActive:
+          type: boolean
+        isFeatured:
+          type: boolean
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+
+    MembershipPlanInput:
+      type: object
+      required: [name, price, billingCycle]
+      properties:
+        name:
+          type: string
+          minLength: 1
+        price:
+          type: string
+        billingCycle:
+          type: string
+          enum: [monthly, yearly, lifetime, one_time]
+        description:
+          type: string
+        features:
+          type: array
+          items:
+            type: string
+        checkoutUrl:
+          type: string
+        isActive:
+          type: boolean
+        isFeatured:
+          type: boolean
+
+    MembershipPlanUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+        price:
+          type: string
+        billingCycle:
+          type: string
+          enum: [monthly, yearly, lifetime, one_time]
+        description:
+          type: string
+        features:
+          type: array
+          items:
+            type: string
+        checkoutUrl:
+          type: string
+        isActive:
+          type: boolean
+        isFeatured:
+          type: boolean
+
+    StarterPack:
+      type: object
+      required: [id, name, price, discountPercentage, items, checkoutUrl, isAvailable, createdAt, updatedAt]
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        price:
+          type: string
+        discountPercentage:
+          type: integer
+        items:
+          type: array
+          items:
+            type: string
+        checkoutUrl:
+          type: string
+        isAvailable:
+          type: boolean
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+
+    StarterPackInput:
+      type: object
+      required: [name, price]
+      properties:
+        name:
+          type: string
+          minLength: 1
+        price:
+          type: string
+        discountPercentage:
+          type: integer
+        items:
+          type: array
+          items:
+            type: string
+        checkoutUrl:
+          type: string
+        isAvailable:
+          type: boolean
+
+    StarterPackUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+        price:
+          type: string
+        discountPercentage:
+          type: integer
+        items:
+          type: array
+          items:
+            type: string
+        checkoutUrl:
+          type: string
+        isAvailable:
+          type: boolean
+
+    SiteSettings:
+      type: object
+      required: [id, siteName, contactEmail, currency, taxRate, maintenanceMode, discordInviteUrl, updatedAt]
+      properties:
+        id:
+          type: integer
+        siteName:
+          type: string
+        logoUrl:
+          type: ["string", "null"]
+        contactEmail:
+          type: string
+        currency:
+          type: string
+        taxRate:
+          type: string
+        notificationEmail:
+          type: ["string", "null"]
+        maintenanceMode:
+          type: boolean
+        discordInviteUrl:
+          type: string
+        updatedAt:
+          type: string
+
+    SiteSettingsUpdate:
+      type: object
+      properties:
+        siteName:
+          type: string
+          minLength: 1
+        logoUrl:
+          type: ["string", "null"]
+        contactEmail:
+          type: string
+        currency:
+          type: string
+        taxRate:
+          type: string
+        notificationEmail:
+          type: ["string", "null"]
+        maintenanceMode:
+          type: boolean
+        discordInviteUrl:
+          type: string
+
+    AuditLog:
+      type: object
+      required: [id, adminUsername, action, entityType, createdAt]
+      properties:
+        id:
+          type: integer
+        adminUserId:
+          type: ["integer", "null"]
+        adminUsername:
+          type: string
+        action:
+          type: string
+        entityType:
+          type: string
+        entityId:
+          type: ["string", "null"]
+        oldValue:
+          type: ["object", "null"]
+        newValue:
+          type: ["object", "null"]
+        ipAddress:
+          type: ["string", "null"]
+        createdAt:
+          type: string
+
+    AuditLogList:
+      type: object
+      required: [items, total]
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/AuditLog"
+        total:
+          type: integer
