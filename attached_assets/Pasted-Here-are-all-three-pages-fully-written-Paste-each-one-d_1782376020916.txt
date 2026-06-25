@@ -1,0 +1,231 @@
+Here are all three pages fully written. Paste each one directly into its respective page file in Replit.
+
+---
+
+## PRIVACY POLICY — paste into `/privacy` page
+
+---
+
+**Privacy Policy**
+
+*Last Updated: June 25, 2025*
+
+This Privacy Policy explains how we collect, use, and protect your personal information when you use our website and services. By using our site, you agree to the terms described below.
+
+**1. Information We Collect**
+
+We collect the following types of information:
+
+- **Personal Identification Information** — your full name and email address when you register or make a purchase
+- **Payment Information** — payment details are processed securely through Paddle. We do not store your card number or banking details on our servers
+- **Order Information** — your Order ID, plan purchased, purchase date, and payment status
+- **Usage Data** — pages visited, time spent on the site, browser type, and device type collected through cookies
+
+**2. How We Use Your Information**
+
+We use your information to:
+
+- Process and confirm your purchase
+- Send you your Order ID and purchase confirmation by email
+- Respond to your support or refund requests
+- Improve the performance and design of our website
+- Send important service updates (not marketing emails without your consent)
+
+**3. How We Share Your Information**
+
+We do not sell your personal data to anyone. We share your data only with:
+
+- **Paddle** — our payment processor, who handles all transactions securely. Paddle may collect and process your payment and billing information under their own Privacy Policy
+- **Email Service Providers** — used only to send you transactional emails such as order confirmations
+
+**4. Data Storage and Security**
+
+Your data is stored on secure servers with encryption. We use industry-standard security practices to protect your information from unauthorized access, alteration, or disclosure. However, no method of transmission over the internet is 100% secure, and we cannot guarantee absolute security.
+
+**5. Cookies**
+
+We use cookies to improve your experience on our site. Cookies help us remember your preferences and understand how visitors use our website. You can disable cookies in your browser settings at any time. For full details, see our Cookie Policy.
+
+**6. Your Rights**
+
+You have the right to:
+
+- Request access to the personal data we hold about you
+- Request correction of any inaccurate data
+- Request deletion of your personal data
+- Withdraw consent for marketing communications at any time
+
+To exercise any of these rights, email us at **rameediscord@gmail.com**
+
+**7. Data Retention**
+
+We retain your order and account data for as long as necessary to provide services and comply with our business obligations. If you request deletion, we will remove your data within 14 business days unless we are legally required to retain it.
+
+**8. Third-Party Links**
+
+Our website may contain links to third-party sites. We are not responsible for the privacy practices of those sites and encourage you to read their policies.
+
+**9. Changes to This Policy**
+
+We may update this Privacy Policy from time to time. The updated date at the top of this page will always reflect the latest version. Continued use of the site after changes means you accept the updated policy.
+
+**10. Contact**
+
+For any privacy-related questions or requests, contact us at:
+**rameediscord@gmail.com**
+
+---
+
+## REFUND POLICY — paste into `/refund` page
+
+---
+
+**Refund Policy**
+
+*Last Updated: June 25, 2025*
+
+We want you to be satisfied with your purchase. Please read this Refund Policy carefully before buying any plan or pack from our platform.
+
+**1. Refund Eligibility Window**
+
+You may request a refund within **7 days** of your purchase date. Requests submitted after 7 days will not be eligible for a refund under any circumstances.
+
+**2. What Qualifies for a Refund**
+
+You are eligible for a refund if:
+
+- You were charged but did not receive access to the service
+- You were charged twice for the same order
+- The service you received was significantly different from what was described on the pricing page
+- You experienced a technical issue on our side that prevented you from using the service and our support team was unable to resolve it within a reasonable time
+
+**3. What Does Not Qualify for a Refund**
+
+Refunds will not be issued in the following cases:
+
+- You have already accessed, used, or downloaded the service or digital product
+- You changed your mind after purchase
+- You purchased the wrong plan by mistake (please contact us before completing your purchase if unsure)
+- Your refund request is submitted after the 7-day window
+- Violations of our Terms of Service that resulted in account suspension
+
+**4. How to Request a Refund**
+
+To request a refund, send an email to **rameediscord@gmail.com** with the following information:
+
+- Your full name
+- Your email address used at checkout
+- Your **Order ID** (found in your confirmation email, format: ORD-YYYYMMDD-XXXXX)
+- Reason for the refund request
+
+We will review your request and respond within 2 business days.
+
+**5. Refund Processing Time**
+
+Once your refund is approved, it will be processed within **3 to 5 business days**. The time it takes to appear in your account depends on your bank or payment provider.
+
+**6. Digital Product Disclaimer**
+
+All of our products and services are digital in nature. Once a digital product has been accessed, delivered, or downloaded, it is considered used and is no longer eligible for a refund unless a technical fault on our part is confirmed.
+
+**7. Partial Refunds**
+
+In certain cases where only part of a service was delivered or accessible, we may at our discretion offer a partial refund or service credit.
+
+**8. Chargebacks**
+
+We ask that you contact us at **rameediscord@gmail.com** before initiating a chargeback with your bank. We are happy to resolve any issue directly. Unjustified chargebacks may result in account suspension.
+
+**9. Contact**
+
+For all refund requests and questions:
+**rameediscord@gmail.com**
+Please include your Order ID in every message so we can locate your purchase quickly.
+
+---
+
+## TERMS OF SERVICE — paste into `/terms` page
+
+---
+
+**Terms of Service**
+
+*Last Updated: June 25, 2025*
+
+Please read these Terms of Service carefully before using our website or purchasing any of our plans or services. By accessing or using this site, you agree to be bound by these terms.
+
+**1. Acceptance of Terms**
+
+By visiting our website or making a purchase, you confirm that you have read, understood, and agree to these Terms of Service. If you do not agree, please do not use our site or services.
+
+**2. Description of Services**
+
+We provide digital subscription plans and service packs as described on our Pricing page. The exact features and content of each plan are listed at the time of purchase. We reserve the right to update or modify plans with reasonable notice.
+
+**3. Account Registration**
+
+To access certain services, you may be required to create an account. You are responsible for:
+
+- Keeping your login credentials confidential
+- All activity that occurs under your account
+- Notifying us immediately if you suspect unauthorized access
+
+We reserve the right to suspend or terminate accounts that violate these terms.
+
+**4. Payment and Billing**
+
+- All prices are displayed on the Pricing page and are in USD unless otherwise stated
+- Payments are processed securely through **Paddle**
+- By completing a purchase, you authorize the charge to your selected payment method
+- You will receive an Order ID confirmation by email after every successful payment
+- Subscription plans will renew automatically unless cancelled before the renewal date
+
+**5. Cancellation**
+
+You may cancel your subscription at any time by contacting us at **rameediscord@gmail.com**. Cancellation takes effect at the end of the current billing period. No partial refunds are issued for unused time within a billing period unless covered by our Refund Policy.
+
+**6. Prohibited Uses**
+
+You agree not to use our services to:
+
+- Violate any applicable laws or regulations
+- Share your account access with unauthorized third parties
+- Resell, redistribute, or sublicense our services without written permission
+- Attempt to reverse engineer, hack, or disrupt our platform
+- Submit false information at checkout or during support requests
+- Initiate fraudulent chargebacks
+
+Violation of any prohibited use may result in immediate account termination without refund.
+
+**7. Intellectual Property**
+
+All content on this website — including text, graphics, logos, and software — is our property and is protected by applicable intellectual property laws. You may not copy, reproduce, or distribute any part of our content without explicit written permission.
+
+**8. Limitation of Liability**
+
+To the fullest extent permitted by law:
+
+- We are not liable for any indirect, incidental, or consequential damages arising from your use of our services
+- Our total liability to you for any claim shall not exceed the amount you paid for the service in question
+- We do not guarantee uninterrupted or error-free service at all times
+
+**9. Service Availability**
+
+We aim to keep our services available at all times but do not guarantee 100% uptime. We may perform maintenance or updates that temporarily affect availability. We will try to notify users in advance of planned downtime.
+
+**10. Modifications to Terms**
+
+We reserve the right to update these Terms of Service at any time. The updated date at the top of this page will reflect the latest version. Continued use of our services after changes are posted constitutes your acceptance of the updated terms.
+
+**11. Termination**
+
+We reserve the right to suspend or permanently terminate your account at any time if you violate these Terms of Service, without prior notice and without liability.
+
+**12. Contact**
+
+For any questions regarding these Terms of Service:
+**rameediscord@gmail.com**
+
+---
+
+These three are clean, professional, and Paddle-reviewer ready. Want me to write the **Cookie Policy** page text as well to complete the set?

@@ -1,0 +1,150 @@
+Here is the full Cookie Policy — paste this directly into your `/cookies` page in Replit:
+
+---
+
+## COOKIE POLICY — paste into `/cookies` page
+
+---
+
+**Cookie Policy**
+
+*Last Updated: June 25, 2025*
+
+This Cookie Policy explains what cookies are, which cookies we use on our website, why we use them, and how you can control them. By continuing to use our website, you consent to our use of cookies as described in this policy.
+
+---
+
+**1. What Are Cookies**
+
+Cookies are small text files that are placed on your device — computer, tablet, or phone — when you visit a website. They are widely used to make websites work properly, work more efficiently, and to provide information to the website owners.
+
+Cookies do not contain viruses or harmful code. They cannot access other files on your device or gather information beyond what is described in this policy.
+
+---
+
+**2. Types of Cookies We Use**
+
+We use the following categories of cookies on our website:
+
+**a) Strictly Necessary Cookies**
+
+These cookies are essential for the website to function. Without them, core features like logging in, staying logged in, or completing a checkout would not work. These cookies cannot be disabled.
+
+Examples of what they do:
+- Keep you logged into your account during a session
+- Remember items in your cart or selected plan during checkout
+- Maintain your session securely so you are not logged out unexpectedly
+
+**b) Performance and Analytics Cookies**
+
+These cookies help us understand how visitors interact with our website. They collect anonymous information such as which pages are visited most, how long visitors stay, and whether any errors occur. This data helps us improve the website experience.
+
+Examples of what they do:
+- Count how many people visit each page
+- Track which features are used most often
+- Identify pages where visitors leave the site
+
+No personally identifiable information is collected by these cookies.
+
+**c) Functional Cookies**
+
+These cookies allow the website to remember choices you make and provide enhanced, more personalised features. They may be set by us or by third-party providers whose services we have added to our pages.
+
+Examples of what they do:
+- Remember your language or display preferences
+- Remember whether you have dismissed a notice or banner
+- Improve loading speed on return visits
+
+**d) Payment and Third-Party Cookies**
+
+When you proceed to checkout, our payment processor **Paddle** may set its own cookies on your device to process your transaction securely and prevent fraud. These cookies are governed by Paddle's own Cookie and Privacy Policy. We do not control these cookies.
+
+---
+
+**3. What We Do Not Use Cookies For**
+
+We do not use cookies to:
+
+- Collect your name, email, or any personally identifiable information without your knowledge
+- Track your activity across other websites
+- Serve you targeted advertising or share your data with advertising networks
+- Sell your browsing behaviour to any third party
+
+---
+
+**4. How Long Cookies Last**
+
+Cookies on our site fall into two categories based on how long they stay on your device:
+
+- **Session Cookies** — these are temporary and are deleted automatically when you close your browser. They are used to keep you logged in and maintain your session during a single visit.
+- **Persistent Cookies** — these remain on your device for a set period of time (for example, 30 days or until the expiry date set in the cookie). They are used to remember your preferences on return visits.
+
+---
+
+**5. Third-Party Cookies**
+
+Some features of our website involve third-party services that may set their own cookies. These include:
+
+- **Paddle** — for secure payment processing during checkout
+- **Email delivery services** — used when you sign up or make a purchase, to send you confirmation emails
+
+We do not have direct control over third-party cookies. We recommend reading the privacy and cookie policies of these services for full details.
+
+---
+
+**6. How to Control and Disable Cookies**
+
+You have the right to accept or decline cookies at any time. Here is how to manage cookies in the most common browsers:
+
+**Google Chrome:**
+Settings → Privacy and Security → Cookies and other site data → Choose your preference
+
+**Mozilla Firefox:**
+Settings → Privacy and Security → Cookies and Site Data → Manage your settings
+
+**Safari:**
+Preferences → Privacy → Manage Website Data
+
+**Microsoft Edge:**
+Settings → Cookies and Site Permissions → Manage and delete cookies
+
+**On Mobile (iOS/Android):**
+Go to your browser app settings and look for Privacy or Cookies under Site Settings
+
+---
+
+**7. What Happens If You Disable Cookies**
+
+If you choose to disable all cookies, please be aware that:
+
+- Some parts of the website may not function correctly
+- You may not be able to stay logged into your account
+- The checkout process may not work properly
+- Your preferences may not be saved between visits
+
+We recommend keeping strictly necessary cookies enabled for the best experience.
+
+---
+
+**8. Changes to This Cookie Policy**
+
+We may update this Cookie Policy from time to time to reflect changes in technology, law, or our services. The updated date at the top of this page will always show the most recent version. We encourage you to check this page periodically.
+
+---
+
+**9. Contact**
+
+If you have any questions about how we use cookies or want to request more information, contact us at:
+
+**rameediscord@gmail.com**
+
+---
+
+That completes the full set of all four legal pages:
+
+- ✅ Privacy Policy
+- ✅ Refund Policy
+- ✅ Terms of Service
+- ✅ Cookie Policy
+
+All four are Paddle-reviewer ready, professionally written, free of any location or country references, and use **rameediscord@gmail.com** throughout. Just paste each one into its page file in Replit and you are done.

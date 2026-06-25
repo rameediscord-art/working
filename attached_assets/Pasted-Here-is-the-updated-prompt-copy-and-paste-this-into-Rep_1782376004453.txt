@@ -1,0 +1,115 @@
+Here is the updated prompt — copy and paste this into Replit AI:
+
+---
+
+**PROMPT:**
+
+> You are building a complete, production-ready website with an Admin Dashboard. Apply ALL of the following changes and features. Everything must actually work — no placeholder code, no dummy functions.
+>
+> ---
+>
+> **1. ADMIN SECURITY — FORGOT PASSWORD SYSTEM**
+>
+> - Admin login page must be hidden from public. There should be NO link to `/admin` anywhere on the site.
+> - Only someone who knows the exact URL can reach it.
+> - Add a "Forgot Password" flow on the admin login page:
+>   - Admin enters their registered email address
+>   - System sends a password reset link to that email (use Nodemailer or Resend)
+>   - Link expires after 15 minutes
+>   - After clicking the link, admin sets a new password with confirmation field
+>   - Show success message and redirect to login
+> - Brute force protection: lock admin account for 30 minutes after 5 failed login attempts
+> - All admin routes must be protected by JWT middleware — if token is missing or expired, redirect to admin login
+>
+> ---
+>
+> **2. REMOVE THESE THINGS FROM THE ENTIRE SITE**
+>
+> - Remove every mention of "Join our Discord server" — buttons, banners, links, footer text, popups, everything
+> - Remove every mention of "LemonSqueezy" or "Lemon Squeezy" — including any logos, footer badges, payment method labels, or links
+> - Remove every mention of any country, address, location, or region anywhere on the site — including About page, footer, contact page, legal pages, and metadata
+> - Do a full search across all files and delete every instance of the above
+>
+> ---
+>
+> **3. ORDER ID SYSTEM — MANUAL PADDLE PAYMENT**
+>
+> - When a customer completes a purchase (manually for now, before Paddle automation is live), generate a unique Order ID in this format: `ORD-YYYYMMDD-XXXXX` where XXXXX is a random 5-digit number
+> - Save the order to the database with these fields:
+>   - Order ID
+>   - Customer full name
+>   - Customer email
+>   - Plan/Pack purchased (name + price)
+>   - Date and time of purchase
+>   - Payment status: Pending / Confirmed / Refunded
+>   - Notes field (for admin to write anything)
+> - Show a confirmation page to the customer after purchase with their Order ID clearly displayed
+> - Send a confirmation email to the customer with their Order ID, plan details, and next steps
+> - In the Admin Dashboard, show a full Orders table with search by Order ID or email, filter by status, and ability to manually update payment status
+>
+> ---
+>
+> **4. PADDLE MANUAL VERIFICATION — WHAT REVIEWERS WILL SEE**
+>
+> Build these pages exactly as Paddle's manual review team expects:
+>
+> - **Homepage**: clearly describe what the product/service is, who it is for, and what the customer receives after purchase. No vague language.
+> - **Pricing Page**: list all plans with exact prices, billing cycle, and what is included in each plan. No hidden fees.
+> - **Checkout Flow**: working checkout form (name, email, plan selection) that submits and generates an Order ID. Label it clearly as manual payment for now.
+> - **Contact Page**: contact email is `rameediscord@gmail.com` and a working contact form that sends messages to that email
+> - **About Page**: who runs the business and what the company does. No location, country, or address mentioned anywhere.
+>
+> ---
+>
+> **5. LEGAL PAGES — FULL DETAIL, SEPARATE PAGES**
+>
+> Create the following as separate, fully written pages. Use `rameediscord@gmail.com` as the contact email on all legal pages. Do not mention any country, location, or address anywhere in any of these pages.
+>
+> **Privacy Policy page** (`/privacy`):
+> - What data is collected (name, email, payment info)
+> - How data is stored and protected
+> - Whether data is shared with third parties (and with whom — e.g. Paddle for payment processing)
+> - User rights: access, correction, deletion
+> - Cookie usage
+> - Contact email for privacy requests: `rameediscord@gmail.com`
+> - Last updated date
+>
+> **Refund Policy page** (`/refund`):
+> - Clear statement of refund eligibility window (7 days from purchase)
+> - What qualifies for a refund and what does not
+> - How to request a refund: email `rameediscord@gmail.com` with your Order ID
+> - How long refunds take to process (3 to 5 business days)
+> - Digital product disclaimer
+> - No-refund conditions (e.g. if service has already been used or accessed)
+>
+> **Terms of Service page** (`/terms`):
+> - Acceptance of terms
+> - Description of services
+> - Payment and billing terms
+> - Prohibited uses
+> - Limitation of liability
+> - Contact information: `rameediscord@gmail.com`
+>
+> **Cookie Policy page** (`/cookies`):
+> - What cookies are used
+> - Why they are used
+> - How to disable them
+>
+> All four pages must be linked in the website footer.
+>
+> ---
+>
+> **6. FINAL CHECKS BEFORE DELIVERING**
+>
+> - Every form on the site must have validation and show clear error messages
+> - Every page must load without console errors
+> - Admin dashboard must be fully functional: edit membership names, prices, starter pack details, toggle plan visibility, manage orders
+> - All changes in admin must save to the database and reflect immediately on the live site
+> - Mobile responsive on all pages
+> - No broken links anywhere
+> - Footer must contain: Privacy Policy, Refund Policy, Terms of Service, Cookie Policy, Contact — all linked correctly
+> - Zero mentions of any country, city, address, or region anywhere on the entire site
+
+---
+
+Want me to also write the actual full text for the **Privacy Policy, Refund Policy, and Terms of Service** pages so you can paste them in directly?
