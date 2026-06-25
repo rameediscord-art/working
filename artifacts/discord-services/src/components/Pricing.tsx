@@ -3,6 +3,7 @@ import { Check } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { Link } from "wouter";
 
 const tiers = [
   {
@@ -10,7 +11,8 @@ const tiers = [
     description: "Perfect for individuals looking to get started.",
     monthlyPrice: "$9.99",
     lifetimePrice: "$79",
-    features: ["VIP community access", "1 premium bot", "Basic email support", "Community channels access"],
+    billing: { monthly: "/month", lifetime: " one-time" },
+    features: ["VIP community access", "1 premium tool license", "Email support", "All standard features"],
     popular: false,
   },
   {
@@ -18,12 +20,13 @@ const tiers = [
     description: "Ideal for power users who need more features.",
     monthlyPrice: "$24.99",
     lifetimePrice: "$199",
+    billing: { monthly: "/month", lifetime: " one-time" },
     features: [
       "Everything in Starter",
-      "Up to 3 premium bots",
-      "1 coaching session/mo",
+      "Up to 3 premium tool licenses",
+      "1 coaching session/month",
       "Marketplace tools access",
-      "Priority 24/7 support",
+      "Priority support within 12h",
     ],
     popular: true,
   },
@@ -32,12 +35,13 @@ const tiers = [
     description: "The ultimate package for serious digital entrepreneurs.",
     monthlyPrice: "$49.99",
     lifetimePrice: "$399",
+    billing: { monthly: "/month", lifetime: " one-time" },
     features: [
       "Everything in Pro",
-      "Unlimited bots",
+      "Unlimited tool licenses",
       "Weekly coaching sessions",
       "Full automation suite",
-      "Dedicated support channel",
+      "Dedicated support line",
       "Early beta access",
     ],
     popular: false,
@@ -53,31 +57,29 @@ export function Pricing() {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">Simple, Transparent Pricing</h2>
           <p className="text-lg text-muted-foreground mb-8">
-            Choose the perfect plan for your needs. No hidden fees, cancel anytime.
+            Choose the perfect plan for your needs. All prices are in USD. No hidden fees, cancel anytime.
           </p>
-          
+
           <div className="inline-flex items-center p-1 bg-muted/50 rounded-full border border-border/50">
             <button
               onClick={() => setBillingCycle("monthly")}
               className={`px-6 py-2 rounded-full text-sm font-medium transition-colors ${
-                billingCycle === "monthly" 
-                  ? "bg-background text-foreground shadow-sm" 
+                billingCycle === "monthly"
+                  ? "bg-background text-foreground shadow-sm"
                   : "text-muted-foreground hover:text-foreground"
               }`}
-              data-testid="toggle-monthly"
             >
               Monthly
             </button>
             <button
               onClick={() => setBillingCycle("lifetime")}
               className={`px-6 py-2 rounded-full text-sm font-medium transition-colors ${
-                billingCycle === "lifetime" 
-                  ? "bg-background text-foreground shadow-sm" 
+                billingCycle === "lifetime"
+                  ? "bg-background text-foreground shadow-sm"
                   : "text-muted-foreground hover:text-foreground"
               }`}
-              data-testid="toggle-lifetime"
             >
-              Lifetime <span className="ml-1 text-xs text-emerald-400 font-bold">Save 20%</span>
+              Lifetime <span className="ml-1 text-xs text-emerald-400 font-bold">Save ~30%</span>
             </button>
           </div>
         </div>
@@ -95,7 +97,7 @@ export function Pricing() {
               {tier.popular && (
                 <div className="absolute inset-0 bg-gradient-to-b from-primary/20 to-secondary/20 blur-xl rounded-3xl" />
               )}
-              <Card 
+              <Card
                 className={`h-full relative flex flex-col bg-card/40 backdrop-blur-sm border-border/50 ${
                   tier.popular ? "border-primary/50 shadow-[0_0_30px_rgba(124,58,237,0.15)]" : ""
                 }`}
@@ -114,8 +116,8 @@ export function Pricing() {
                     <span className="text-4xl font-bold text-foreground">
                       {billingCycle === "monthly" ? tier.monthlyPrice : tier.lifetimePrice}
                     </span>
-                    <span className="text-muted-foreground">
-                      {billingCycle === "monthly" ? "/mo" : " once"}
+                    <span className="text-muted-foreground text-sm">
+                      {billingCycle === "monthly" ? tier.billing.monthly : tier.billing.lifetime}
                     </span>
                   </div>
                   <ul className="space-y-3">
@@ -128,19 +130,27 @@ export function Pricing() {
                   </ul>
                 </CardContent>
                 <CardFooter>
-                  <Button 
-                    className="w-full" 
+                  <Button
+                    className="w-full"
                     variant={tier.popular ? "default" : "outline"}
                     asChild
-                    data-testid={`button-plan-${tier.name.toLowerCase()}`}
                   >
-                    <a href="#checkout-placeholder">Select {tier.name}</a>
+                    <Link href={`/checkout?plan=${encodeURIComponent(tier.name)}&price=${encodeURIComponent(billingCycle === "monthly" ? tier.monthlyPrice : tier.lifetimePrice)}&billing=${billingCycle}`}>
+                      Get {tier.name}
+                    </Link>
                   </Button>
                 </CardFooter>
               </Card>
             </motion.div>
           ))}
         </div>
+
+        <p className="text-center text-sm text-muted-foreground mt-10">
+          Payments processed securely by Paddle. Questions?{" "}
+          <a href="mailto:rameediscord@gmail.com" className="text-primary hover:underline">
+            Contact us
+          </a>
+        </p>
       </div>
     </section>
   );

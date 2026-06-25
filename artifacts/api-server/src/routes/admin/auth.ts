@@ -41,7 +41,7 @@ router.post("/admin/auth/login", async (req, res): Promise<void> => {
 
   if (!passwordValid) {
     const attempts = user.failedLoginAttempts + 1;
-    const lockedUntil = attempts >= 5 ? new Date(Date.now() + 15 * 60 * 1000) : null;
+    const lockedUntil = attempts >= 5 ? new Date(Date.now() + 30 * 60 * 1000) : null;
     await db
       .update(adminUsersTable)
       .set({ failedLoginAttempts: attempts, lockedUntil })

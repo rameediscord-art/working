@@ -3,28 +3,29 @@ import { Check, Zap, Shield, Crown, TrendingUp, Download, Settings } from "lucid
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "wouter";
 
 const services = [
   {
     id: "vip-membership",
-    title: "VIP Discord Membership",
-    description: "Exclusive community access and perks.",
+    title: "VIP Membership",
+    description: "Exclusive community access and premium perks.",
     price: "$9.99/mo",
     icon: <Crown className="w-6 h-6 text-primary" />,
     features: ["Exclusive VIP channels", "Early access to updates", "Priority direct support"],
   },
   {
-    id: "premium-bot",
-    title: "Premium Bot Access",
-    description: "Supercharge your server with our advanced tools.",
+    id: "premium-tools",
+    title: "Premium Tools Access",
+    description: "Supercharge your workflow with our advanced tools.",
     price: "$14.99/mo",
     icon: <Zap className="w-6 h-6 text-secondary" />,
-    features: ["Advanced server automation", "Custom command creation", "99.9% guaranteed uptime", "Role management"],
+    features: ["Advanced automation", "Custom configurations", "99.9% guaranteed uptime", "Full tool suite"],
   },
   {
     id: "gaming-coaching",
     title: "Gaming Coaching",
-    description: "Level up your skills with pro players.",
+    description: "Level up your skills with professional coaching.",
     price: "$49.99/session",
     icon: <TrendingUp className="w-6 h-6 text-emerald-400" />,
     features: ["1-on-1 personalized coaching", "In-depth VOD review", "Custom rank improvement strategy"],
@@ -43,7 +44,7 @@ const services = [
     description: "Connect your workflow seamlessly.",
     price: "$39.99/mo",
     icon: <Settings className="w-6 h-6 text-purple-400" />,
-    features: ["Custom workflow automation", "Scheduled server tasks", "Advanced webhook integrations"],
+    features: ["Custom workflow automation", "Scheduled tasks", "Advanced webhook integrations"],
     popular: true,
   },
   {
@@ -52,18 +53,13 @@ const services = [
     description: "Instant access to premium resources.",
     price: "$4.99+",
     icon: <Download className="w-6 h-6 text-pink-400" />,
-    features: ["Server setup templates", "Custom utility scripts", "Moderation guides", "Instant delivery"],
+    features: ["Setup templates", "Custom utility scripts", "Moderation guides", "Instant delivery"],
   },
 ];
 
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
+  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
 };
 
 const itemVariants = {
@@ -91,16 +87,15 @@ export function Services() {
         >
           {services.map((service) => (
             <motion.div key={service.id} variants={itemVariants}>
-              <Card className="h-full bg-card/40 backdrop-blur-sm border-border/50 hover:border-primary/50 transition-all duration-300 relative group overflow-hidden">
-                {/* Hover Glow Effect */}
+              <Card className="h-full bg-card/40 backdrop-blur-sm border-border/50 hover:border-primary/50 transition-all duration-300 relative group overflow-hidden flex flex-col">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                
+
                 {service.popular && (
                   <Badge className="absolute top-4 right-4 bg-primary text-primary-foreground pointer-events-none">
                     Popular
                   </Badge>
                 )}
-                
+
                 <CardHeader>
                   <div className="w-12 h-12 rounded-xl bg-background/50 flex items-center justify-center border border-border/50 mb-4 shadow-sm">
                     {service.icon}
@@ -120,13 +115,14 @@ export function Services() {
                   </ul>
                 </CardContent>
                 <CardFooter>
-                  <Button 
-                    className="w-full" 
+                  <Button
+                    className="w-full"
                     variant={service.popular ? "default" : "outline"}
                     asChild
-                    data-testid={`button-buy-${service.id}`}
                   >
-                    <a href="https://checkout.lemonsqueezy.com/placeholder">Buy Now</a>
+                    <Link href={`/checkout?plan=${encodeURIComponent(service.title)}&price=${encodeURIComponent(service.price)}`}>
+                      Get Started
+                    </Link>
                   </Button>
                 </CardFooter>
               </Card>

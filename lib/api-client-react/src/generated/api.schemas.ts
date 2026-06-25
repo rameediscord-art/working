@@ -55,6 +55,19 @@ export interface ChangePasswordInput {
   newPassword: string;
 }
 
+export interface ForgotPasswordInput {
+  email: string;
+}
+
+export interface ResetPasswordInput {
+  /** @minLength 1 */
+  token: string;
+  /** @minLength 8 */
+  newPassword: string;
+  /** @minLength 8 */
+  confirmPassword: string;
+}
+
 /**
  * @nullable
  */
@@ -88,6 +101,8 @@ export interface DashboardStats {
   activePlans: number;
   totalPacks: number;
   activePacks: number;
+  totalOrders: number;
+  pendingOrders: number;
   maintenanceMode?: boolean;
   recentActivity: AuditLog[];
 }
@@ -203,7 +218,6 @@ export interface SiteSettings {
   /** @nullable */
   notificationEmail?: string | null;
   maintenanceMode: boolean;
-  discordInviteUrl: string;
   updatedAt: string;
 }
 
@@ -218,7 +232,6 @@ export interface SiteSettingsUpdate {
   /** @nullable */
   notificationEmail?: string | null;
   maintenanceMode?: boolean;
-  discordInviteUrl?: string;
 }
 
 export interface AuditLogList {
@@ -226,8 +239,96 @@ export interface AuditLogList {
   total: number;
 }
 
+export type OrderPaymentStatus = typeof OrderPaymentStatus[keyof typeof OrderPaymentStatus];
+
+
+export const OrderPaymentStatus = {
+  pending: 'pending',
+  confirmed: 'confirmed',
+  refunded: 'refunded',
+} as const;
+
+export interface Order {
+  id: number;
+  orderId: string;
+  customerName: string;
+  customerEmail: string;
+  planName: string;
+  planPrice: string;
+  paymentStatus: OrderPaymentStatus;
+  notes: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface OrderInput {
+  /** @minLength 1 */
+  customerName: string;
+  customerEmail: string;
+  /** @minLength 1 */
+  planName: string;
+  planPrice: string;
+}
+
+export type OrderUpdatePaymentStatus = typeof OrderUpdatePaymentStatus[keyof typeof OrderUpdatePaymentStatus];
+
+
+export const OrderUpdatePaymentStatus = {
+  pending: 'pending',
+  confirmed: 'confirmed',
+  refunded: 'refunded',
+} as const;
+
+export interface OrderUpdate {
+  paymentStatus?: OrderUpdatePaymentStatus;
+  notes?: string;
+}
+
+export interface OrderList {
+  items: Order[];
+  total: number;
+}
+
+export interface ContactInput {
+  /** @minLength 1 */
+  name: string;
+  email: string;
+  subject?: string;
+  /** @minLength 10 */
+  message: string;
+}
+
+export interface PublicPlan {
+  id: number;
+  name: string;
+  price: string;
+  billingCycle: string;
+  description: string;
+  features: string[];
+  isFeatured: boolean;
+}
+
 export type ListAuditLogsParams = {
 limit?: number;
 offset?: number;
 };
+
+export type ListAdminOrdersParams = {
+/**
+ * Search by Order ID or customer email
+ */
+search?: string;
+status?: ListAdminOrdersStatus;
+limit?: number;
+offset?: number;
+};
+
+export type ListAdminOrdersStatus = typeof ListAdminOrdersStatus[keyof typeof ListAdminOrdersStatus];
+
+
+export const ListAdminOrdersStatus = {
+  pending: 'pending',
+  confirmed: 'confirmed',
+  refunded: 'refunded',
+} as const;
 

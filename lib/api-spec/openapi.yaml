@@ -22,6 +22,10 @@ tags:
     description: Dashboard overview
   - name: admin-audit
     description: Audit logs
+  - name: admin-orders
+    description: Orders management
+  - name: orders
+    description: Public order operations
 
 paths:
   /healthz:
@@ -120,6 +124,50 @@ paths:
                 $ref: "#/components/schemas/SuccessResponse"
         "400":
           description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /admin/auth/forgot-password:
+    post:
+      operationId: adminForgotPassword
+      tags: [admin-auth]
+      summary: Request password reset email
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ForgotPasswordInput"
+      responses:
+        "200":
+          description: Email sent (always returns 200 to prevent enumeration)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessResponse"
+
+  /admin/auth/reset-password:
+    post:
+      operationId: adminResetPassword
+      tags: [admin-auth]
+      summary: Reset password with token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ResetPasswordInput"
+      responses:
+        "200":
+          description: Password reset successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessResponse"
+        "400":
+          description: Invalid or expired token
           content:
             application/json:
               schema:
@@ -342,6 +390,159 @@ paths:
               schema:
                 $ref: "#/components/schemas/AuditLogList"
 
+  /admin/orders:
+    get:
+      operationId: listAdminOrders
+      tags: [admin-orders]
+      summary: List all orders
+      parameters:
+        - name: search
+          in: query
+          schema:
+            type: string
+          description: Search by Order ID or customer email
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [pending, confirmed, refunded]
+        - name: limit
+          in: query
+          schema:
+            type: integer
+        - name: offset
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Orders list
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OrderList"
+
+  /admin/orders/{id}:
+    patch:
+      operationId: updateAdminOrder
+      tags: [admin-orders]
+      summary: Update order status or notes
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OrderUpdate"
+      responses:
+        "200":
+          description: Order updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Order"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /orders:
+    post:
+      operationId: createOrder
+      tags: [orders]
+      summary: Submit checkout and create an order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OrderInput"
+      responses:
+        "201":
+          description: Order created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Order"
+        "400":
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /orders/{orderId}:
+    get:
+      operationId: getOrder
+      tags: [orders]
+      summary: Get order confirmation by Order ID
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Order details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Order"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /contact:
+    post:
+      operationId: submitContact
+      tags: [orders]
+      summary: Submit contact form
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ContactInput"
+      responses:
+        "200":
+          description: Message sent
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessResponse"
+        "400":
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /plans:
+    get:
+      operationId: listPublicPlans
+      tags: [orders]
+      summary: List active public plans for checkout
+      responses:
+        "200":
+          description: Active plans
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PublicPlan"
+
 components:
   schemas:
     HealthStatus:
@@ -418,9 +619,31 @@ components:
           type: string
           minLength: 8
 
+    ForgotPasswordInput:
+      type: object
+      required: [email]
+      properties:
+        email:
+          type: string
+          format: email
+
+    ResetPasswordInput:
+      type: object
+      required: [token, newPassword, confirmPassword]
+      properties:
+        token:
+          type: string
+          minLength: 1
+        newPassword:
+          type: string
+          minLength: 8
+        confirmPassword:
+          type: string
+          minLength: 8
+
     DashboardStats:
       type: object
-      required: [totalPlans, activePlans, totalPacks, activePacks, recentActivity]
+      required: [totalPlans, activePlans, totalPacks, activePacks, totalOrders, pendingOrders, recentActivity]
       properties:
         totalPlans:
           type: integer
@@ -429,6 +652,10 @@ components:
         totalPacks:
           type: integer
         activePacks:
+          type: integer
+        totalOrders:
+          type: integer
+        pendingOrders:
           type: integer
         maintenanceMode:
           type: boolean
@@ -582,7 +809,7 @@ components:
 
     SiteSettings:
       type: object
-      required: [id, siteName, contactEmail, currency, taxRate, maintenanceMode, discordInviteUrl, updatedAt]
+      required: [id, siteName, contactEmail, currency, taxRate, maintenanceMode, updatedAt]
       properties:
         id:
           type: integer
@@ -600,8 +827,6 @@ components:
           type: ["string", "null"]
         maintenanceMode:
           type: boolean
-        discordInviteUrl:
-          type: string
         updatedAt:
           type: string
 
@@ -623,8 +848,6 @@ components:
           type: ["string", "null"]
         maintenanceMode:
           type: boolean
-        discordInviteUrl:
-          type: string
 
     AuditLog:
       type: object
@@ -661,3 +884,102 @@ components:
             $ref: "#/components/schemas/AuditLog"
         total:
           type: integer
+
+    Order:
+      type: object
+      required: [id, orderId, customerName, customerEmail, planName, planPrice, paymentStatus, notes, createdAt, updatedAt]
+      properties:
+        id:
+          type: integer
+        orderId:
+          type: string
+        customerName:
+          type: string
+        customerEmail:
+          type: string
+        planName:
+          type: string
+        planPrice:
+          type: string
+        paymentStatus:
+          type: string
+          enum: [pending, confirmed, refunded]
+        notes:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+
+    OrderInput:
+      type: object
+      required: [customerName, customerEmail, planName, planPrice]
+      properties:
+        customerName:
+          type: string
+          minLength: 1
+        customerEmail:
+          type: string
+          format: email
+        planName:
+          type: string
+          minLength: 1
+        planPrice:
+          type: string
+
+    OrderUpdate:
+      type: object
+      properties:
+        paymentStatus:
+          type: string
+          enum: [pending, confirmed, refunded]
+        notes:
+          type: string
+
+    OrderList:
+      type: object
+      required: [items, total]
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/Order"
+        total:
+          type: integer
+
+    ContactInput:
+      type: object
+      required: [name, email, message]
+      properties:
+        name:
+          type: string
+          minLength: 1
+        email:
+          type: string
+          format: email
+        subject:
+          type: string
+        message:
+          type: string
+          minLength: 10
+
+    PublicPlan:
+      type: object
+      required: [id, name, price, billingCycle, description, features, isFeatured]
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        price:
+          type: string
+        billingCycle:
+          type: string
+        description:
+          type: string
+        features:
+          type: array
+          items:
+            type: string
+        isFeatured:
+          type: boolean

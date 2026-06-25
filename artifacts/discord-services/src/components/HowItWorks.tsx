@@ -1,29 +1,29 @@
 import { motion } from "framer-motion";
-import { Search, ShoppingCart, LogIn, Key } from "lucide-react";
+import { Search, ShoppingCart, Mail, Key } from "lucide-react";
 
 const steps = [
   {
     number: "01",
     title: "Choose Your Service",
-    description: "Browse our catalog and select the perfect plan or tool.",
+    description: "Browse our catalog and select the perfect plan or tool for your needs.",
     icon: <Search className="w-6 h-6 text-primary" />,
   },
   {
     number: "02",
     title: "Secure Checkout",
-    description: "Complete payment via Lemon Squeezy's encrypted checkout.",
+    description: "Complete the checkout form with your name, email, and plan selection.",
     icon: <ShoppingCart className="w-6 h-6 text-secondary" />,
   },
   {
     number: "03",
-    title: "Join Our Server",
-    description: "Click the invite link to join the NexusHub Discord community.",
-    icon: <LogIn className="w-6 h-6 text-emerald-400" />,
+    title: "Get Your Order ID",
+    description: "Receive your unique Order ID by email along with your purchase confirmation.",
+    icon: <Mail className="w-6 h-6 text-emerald-400" />,
   },
   {
     number: "04",
     title: "Instant Access",
-    description: "Your role, access, or digital product is delivered automatically.",
+    description: "Your plan is activated within 24 hours. All access details are sent by email.",
     icon: <Key className="w-6 h-6 text-blue-400" />,
   },
 ];
@@ -31,14 +31,13 @@ const steps = [
 export function HowItWorks() {
   return (
     <section id="how-it-works" className="py-24 bg-background/80 relative z-10 overflow-hidden">
-      {/* Decorative gradient line */}
       <div className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent hidden lg:block -z-10" />
 
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">How It Works</h2>
           <p className="text-lg text-muted-foreground">
-            Get instant access to your premium services in four simple steps.
+            Get access to your premium services in four simple steps.
           </p>
         </div>
 

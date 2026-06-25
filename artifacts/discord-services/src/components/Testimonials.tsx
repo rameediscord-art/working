@@ -22,28 +22,28 @@ const testimonials = [
     name: "Marcus Johnson",
     username: "@marcusj",
     rating: 5,
-    quote: "Role assignment worked perfectly. Clicked buy, joined the server, and boom — VIP access was there.",
+    quote: "Checkout was simple. Received my Order ID within seconds and access was set up within a few hours.",
     initials: "MJ",
   },
   {
     name: "Elena Rodriguez",
     username: "@elenar",
     rating: 5,
-    quote: "Best Discord service marketplace I've used. Clean interface, fast delivery, and the community is actually active.",
+    quote: "Best digital services platform I've used. Clean interface, fast delivery, and the support team is actually helpful.",
     initials: "ER",
   },
   {
     name: "David Kim",
     username: "@dkim",
     rating: 5,
-    quote: "Downloaded the server templates. Saved me probably 20 hours of configuration. Highly recommend.",
+    quote: "Downloaded the setup templates. Saved me probably 20 hours of configuration. Highly recommend.",
     initials: "DK",
   },
   {
     name: "Sophie Turner",
     username: "@sophiet",
     rating: 4,
-    quote: "Support team is actually helpful. Had an issue with a bot command and they fixed it in my server within 10 minutes.",
+    quote: "Support team is excellent. Had an issue and they responded within 10 minutes and fixed it immediately.",
     initials: "ST",
   },
 ];
@@ -52,12 +52,12 @@ export function Testimonials() {
   return (
     <section id="testimonials" className="py-24 bg-background relative z-10 overflow-hidden">
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[100px] opacity-40 pointer-events-none" />
-      
+
       <div className="container mx-auto px-4 md:px-6 relative">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">Trusted by Thousands</h2>
           <p className="text-lg text-muted-foreground">
-            Don't just take our word for it. Hear from our active community members.
+            Don't just take our word for it. Hear from our customers.
           </p>
         </div>
 

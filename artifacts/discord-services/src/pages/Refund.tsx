@@ -1,47 +1,77 @@
-import { Link } from "wouter";
-import { ArrowLeft } from "lucide-react";
+import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 
 export function Refund() {
   return (
-    <div className="min-h-screen bg-background pt-24 pb-16">
-      <div className="container mx-auto px-4 max-w-3xl">
-        <Link href="/" className="inline-flex items-center text-sm text-muted-foreground hover:text-primary mb-8 transition-colors">
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Home
-        </Link>
-        
-        <h1 className="text-4xl font-bold mb-8">Refund Policy</h1>
-        
-        <div className="prose prose-invert prose-purple max-w-none">
-          <p>Last Updated: October 2023</p>
-          
-          <h2>1. 7-Day Refund Window</h2>
-          <p>We stand behind the quality of our premium memberships and bot services. If you are unsatisfied with your subscription, you may request a full refund within 7 days of your initial purchase.</p>
-
-          <h2>2. Non-Refundable Items</h2>
-          <p>The following items are strictly non-refundable due to their nature:</p>
-          <ul>
-            <li><strong>Digital Downloads:</strong> Templates, scripts, and guides cannot be returned once accessed.</li>
-            <li><strong>Completed Coaching:</strong> Once a coaching session has been delivered, the fee is non-refundable. (Cancellations made 24 hours prior to the session are eligible for a refund).</li>
-            <li><strong>Subscription Renewals:</strong> The 7-day window applies to the first charge only. Subsequent monthly renewals are non-refundable. You must cancel before the renewal date.</li>
-          </ul>
-
-          <h2>3. Service Disruptions</h2>
-          <p>If our bots or services experience extended downtime (exceeding 24 hours), we will issue prorated credits to your account. Full refunds are not issued for temporary outages.</p>
-
-          <h2>4. Banned Accounts</h2>
-          <p>If your account is banned from our Discord server for violating our rules or Discord's Terms of Service, you forfeit any right to a refund for your active subscription.</p>
-
-          <h2>5. How to Request a Refund</h2>
-          <p>To request a refund within the eligible window:</p>
-          <ol>
-            <li>Open a support ticket in our Discord server OR email support@nexushub.gg.</li>
-            <li>Provide your Lemon Squeezy order number or the email used for purchase.</li>
-            <li>State the reason for the refund request (helps us improve).</li>
-          </ol>
-          <p>Refunds are processed to the original payment method and typically take 3-5 business days to appear on your statement.</p>
+    <div className="min-h-screen bg-background text-foreground flex flex-col">
+      <Navbar />
+      <main className="flex-1 pt-24 pb-16">
+        <div className="container mx-auto px-4 md:px-6 max-w-3xl">
+          <h1 className="text-3xl md:text-4xl font-bold mb-2">Refund Policy</h1>
+          <p className="text-muted-foreground mb-10 text-sm">Last Updated: June 25, 2025</p>
+          <div className="space-y-8 text-muted-foreground leading-relaxed">
+            <p>We want you to be satisfied with your purchase. Please read this Refund Policy carefully before buying any plan or pack from our platform.</p>
+            <section>
+              <h2 className="text-xl font-semibold text-foreground mb-3">1. Refund Eligibility Window</h2>
+              <p>You may request a refund within <strong className="text-foreground">7 days</strong> of your purchase date. Requests submitted after 7 days will not be eligible for a refund under any circumstances.</p>
+            </section>
+            <section>
+              <h2 className="text-xl font-semibold text-foreground mb-3">2. What Qualifies for a Refund</h2>
+              <p>You are eligible for a refund if:</p>
+              <ul className="list-disc pl-6 space-y-2 mt-3">
+                <li>You were charged but did not receive access to the service</li>
+                <li>You were charged twice for the same order</li>
+                <li>The service you received was significantly different from what was described on the pricing page</li>
+                <li>You experienced a technical issue on our side that prevented you from using the service and our support team was unable to resolve it within a reasonable time</li>
+              </ul>
+            </section>
+            <section>
+              <h2 className="text-xl font-semibold text-foreground mb-3">3. What Does Not Qualify for a Refund</h2>
+              <p>Refunds will not be issued in the following cases:</p>
+              <ul className="list-disc pl-6 space-y-2 mt-3">
+                <li>You have already accessed, used, or downloaded the service or digital product</li>
+                <li>You changed your mind after purchase</li>
+                <li>You purchased the wrong plan by mistake (please contact us before completing your purchase if unsure)</li>
+                <li>Your refund request is submitted after the 7-day window</li>
+                <li>Violations of our Terms of Service that resulted in account suspension</li>
+              </ul>
+            </section>
+            <section>
+              <h2 className="text-xl font-semibold text-foreground mb-3">4. How to Request a Refund</h2>
+              <p>To request a refund, send an email to <a href="mailto:rameediscord@gmail.com" className="text-primary hover:underline">rameediscord@gmail.com</a> with the following information:</p>
+              <ul className="list-disc pl-6 space-y-2 mt-3">
+                <li>Your full name</li>
+                <li>Your email address used at checkout</li>
+                <li>Your <strong className="text-foreground">Order ID</strong> (found in your confirmation email, format: ORD-YYYYMMDD-XXXXX)</li>
+                <li>Reason for the refund request</li>
+              </ul>
+              <p className="mt-3">We will review your request and respond within 2 business days.</p>
+            </section>
+            <section>
+              <h2 className="text-xl font-semibold text-foreground mb-3">5. Refund Processing Time</h2>
+              <p>Once your refund is approved, it will be processed within <strong className="text-foreground">3 to 5 business days</strong>. The time it takes to appear in your account depends on your bank or payment provider.</p>
+            </section>
+            <section>
+              <h2 className="text-xl font-semibold text-foreground mb-3">6. Digital Product Disclaimer</h2>
+              <p>All of our products and services are digital in nature. Once a digital product has been accessed, delivered, or downloaded, it is considered used and is no longer eligible for a refund unless a technical fault on our part is confirmed.</p>
+            </section>
+            <section>
+              <h2 className="text-xl font-semibold text-foreground mb-3">7. Partial Refunds</h2>
+              <p>In certain cases where only part of a service was delivered or accessible, we may at our discretion offer a partial refund or service credit.</p>
+            </section>
+            <section>
+              <h2 className="text-xl font-semibold text-foreground mb-3">8. Chargebacks</h2>
+              <p>We ask that you contact us at <a href="mailto:rameediscord@gmail.com" className="text-primary hover:underline">rameediscord@gmail.com</a> before initiating a chargeback with your bank. We are happy to resolve any issue directly. Unjustified chargebacks may result in account suspension.</p>
+            </section>
+            <section>
+              <h2 className="text-xl font-semibold text-foreground mb-3">9. Contact</h2>
+              <p>For all refund requests and questions: <a href="mailto:rameediscord@gmail.com" className="text-primary hover:underline">rameediscord@gmail.com</a></p>
+              <p className="mt-2">Please include your Order ID in every message so we can locate your purchase quickly.</p>
+            </section>
+          </div>
         </div>
-      </div>
+      </main>
+      <Footer />
     </div>
   );
 }

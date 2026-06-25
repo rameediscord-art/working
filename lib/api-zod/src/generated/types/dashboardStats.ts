@@ -12,6 +12,8 @@ export interface DashboardStats {
   activePlans: number;
   totalPacks: number;
   activePacks: number;
+  totalOrders: number;
+  pendingOrders: number;
   maintenanceMode?: boolean;
   recentActivity: AuditLog[];
 }

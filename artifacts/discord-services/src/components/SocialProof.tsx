@@ -1,5 +1,4 @@
-import { ShieldCheck, Activity } from "lucide-react";
-import { SiLemonsqueezy } from "react-icons/si";
+import { ShieldCheck, Activity, Lock } from "lucide-react";
 
 export function SocialProof() {
   return (
@@ -9,10 +8,10 @@ export function SocialProof() {
           <Activity className="w-4 h-4 text-emerald-400 animate-pulse" />
           <span>3 people purchased in the last hour</span>
         </div>
-        
+
         <div className="hidden md:flex items-center gap-6">
           <span className="text-sm font-semibold text-foreground">
-            Trusted by 2,400+ members across 12 countries
+            Trusted by 2,400+ customers worldwide
           </span>
         </div>
 
@@ -22,8 +21,8 @@ export function SocialProof() {
             <span>SSL Secured</span>
           </div>
           <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-            <SiLemonsqueezy className="w-4 h-4 text-[#7047EB]" />
-            <span>Powered by Lemon Squeezy</span>
+            <Lock className="w-4 h-4" />
+            <span>Powered by Paddle</span>
           </div>
         </div>
       </div>

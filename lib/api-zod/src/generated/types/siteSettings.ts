@@ -17,6 +17,5 @@ export interface SiteSettings {
   /** @nullable */
   notificationEmail?: string | null;
   maintenanceMode: boolean;
-  discordInviteUrl: string;
   updatedAt: string;
 }

@@ -85,6 +85,41 @@ export const AdminChangePasswordResponse = zod.object({
 
 
 /**
+ * @summary Request password reset email
+ */
+export const AdminForgotPasswordBody = zod.object({
+  "email": zod.string().email()
+})
+
+export const AdminForgotPasswordResponse = zod.object({
+  "success": zod.boolean(),
+  "message": zod.string().optional()
+})
+
+
+/**
+ * @summary Reset password with token
+ */
+
+export const adminResetPasswordBodyNewPasswordMin = 8;
+
+export const adminResetPasswordBodyConfirmPasswordMin = 8;
+
+
+
+export const AdminResetPasswordBody = zod.object({
+  "token": zod.string().min(1),
+  "newPassword": zod.string().min(adminResetPasswordBodyNewPasswordMin),
+  "confirmPassword": zod.string().min(adminResetPasswordBodyConfirmPasswordMin)
+})
+
+export const AdminResetPasswordResponse = zod.object({
+  "success": zod.boolean(),
+  "message": zod.string().optional()
+})
+
+
+/**
  * @summary Get dashboard overview stats
  */
 export const GetAdminDashboardResponse = zod.object({
@@ -92,6 +127,8 @@ export const GetAdminDashboardResponse = zod.object({
   "activePlans": zod.number(),
   "totalPacks": zod.number(),
   "activePacks": zod.number(),
+  "totalOrders": zod.number(),
+  "pendingOrders": zod.number(),
   "maintenanceMode": zod.boolean().optional(),
   "recentActivity": zod.array(zod.object({
   "id": zod.number(),
@@ -308,7 +345,6 @@ export const GetAdminSettingsResponse = zod.object({
   "taxRate": zod.string(),
   "notificationEmail": zod.string().nullish(),
   "maintenanceMode": zod.boolean(),
-  "discordInviteUrl": zod.string(),
   "updatedAt": zod.string()
 })
 
@@ -326,8 +362,7 @@ export const UpdateAdminSettingsBody = zod.object({
   "currency": zod.string().optional(),
   "taxRate": zod.string().optional(),
   "notificationEmail": zod.string().nullish(),
-  "maintenanceMode": zod.boolean().optional(),
-  "discordInviteUrl": zod.string().optional()
+  "maintenanceMode": zod.boolean().optional()
 })
 
 export const UpdateAdminSettingsResponse = zod.object({
@@ -339,7 +374,6 @@ export const UpdateAdminSettingsResponse = zod.object({
   "taxRate": zod.string(),
   "notificationEmail": zod.string().nullish(),
   "maintenanceMode": zod.boolean(),
-  "discordInviteUrl": zod.string(),
   "updatedAt": zod.string()
 })
 
@@ -371,5 +405,143 @@ export const ListAuditLogsResponse = zod.object({
 })),
   "total": zod.number()
 })
+
+
+/**
+ * @summary List all orders
+ */
+export const ListAdminOrdersQueryParams = zod.object({
+  "search": zod.coerce.string().optional().describe('Search by Order ID or customer email'),
+  "status": zod.enum(['pending', 'confirmed', 'refunded']).optional(),
+  "limit": zod.coerce.number().optional(),
+  "offset": zod.coerce.number().optional()
+})
+
+export const ListAdminOrdersResponse = zod.object({
+  "items": zod.array(zod.object({
+  "id": zod.number(),
+  "orderId": zod.string(),
+  "customerName": zod.string(),
+  "customerEmail": zod.string(),
+  "planName": zod.string(),
+  "planPrice": zod.string(),
+  "paymentStatus": zod.enum(['pending', 'confirmed', 'refunded']),
+  "notes": zod.string(),
+  "createdAt": zod.string(),
+  "updatedAt": zod.string()
+})),
+  "total": zod.number()
+})
+
+
+/**
+ * @summary Update order status or notes
+ */
+export const UpdateAdminOrderParams = zod.object({
+  "id": zod.coerce.number()
+})
+
+export const UpdateAdminOrderBody = zod.object({
+  "paymentStatus": zod.enum(['pending', 'confirmed', 'refunded']).optional(),
+  "notes": zod.string().optional()
+})
+
+export const UpdateAdminOrderResponse = zod.object({
+  "id": zod.number(),
+  "orderId": zod.string(),
+  "customerName": zod.string(),
+  "customerEmail": zod.string(),
+  "planName": zod.string(),
+  "planPrice": zod.string(),
+  "paymentStatus": zod.enum(['pending', 'confirmed', 'refunded']),
+  "notes": zod.string(),
+  "createdAt": zod.string(),
+  "updatedAt": zod.string()
+})
+
+
+/**
+ * @summary Submit checkout and create an order
+ */
+
+
+
+
+export const CreateOrderBody = zod.object({
+  "customerName": zod.string().min(1),
+  "customerEmail": zod.string().email(),
+  "planName": zod.string().min(1),
+  "planPrice": zod.string()
+})
+
+export const CreateOrderResponse = zod.object({
+  "id": zod.number(),
+  "orderId": zod.string(),
+  "customerName": zod.string(),
+  "customerEmail": zod.string(),
+  "planName": zod.string(),
+  "planPrice": zod.string(),
+  "paymentStatus": zod.enum(['pending', 'confirmed', 'refunded']),
+  "notes": zod.string(),
+  "createdAt": zod.string(),
+  "updatedAt": zod.string()
+})
+
+
+/**
+ * @summary Get order confirmation by Order ID
+ */
+export const GetOrderParams = zod.object({
+  "orderId": zod.coerce.string()
+})
+
+export const GetOrderResponse = zod.object({
+  "id": zod.number(),
+  "orderId": zod.string(),
+  "customerName": zod.string(),
+  "customerEmail": zod.string(),
+  "planName": zod.string(),
+  "planPrice": zod.string(),
+  "paymentStatus": zod.enum(['pending', 'confirmed', 'refunded']),
+  "notes": zod.string(),
+  "createdAt": zod.string(),
+  "updatedAt": zod.string()
+})
+
+
+/**
+ * @summary Submit contact form
+ */
+
+export const submitContactBodyMessageMin = 10;
+
+
+
+export const SubmitContactBody = zod.object({
+  "name": zod.string().min(1),
+  "email": zod.string().email(),
+  "subject": zod.string().optional(),
+  "message": zod.string().min(submitContactBodyMessageMin)
+})
+
+export const SubmitContactResponse = zod.object({
+  "success": zod.boolean(),
+  "message": zod.string().optional()
+})
+
+
+/**
+ * @summary List active public plans for checkout
+ */
+export const ListPublicPlansResponseItem = zod.object({
+  "id": zod.number(),
+  "name": zod.string(),
+  "price": zod.string(),
+  "billingCycle": zod.string(),
+  "description": zod.string(),
+  "features": zod.array(zod.string()),
+  "isFeatured": zod.boolean()
+})
+export const ListPublicPlansResponse = zod.array(ListPublicPlansResponseItem)
 
 

@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { SiDiscord } from "react-icons/si";
-import { Clock } from "lucide-react";
+import { Clock, Mail } from "lucide-react";
+import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -34,32 +34,41 @@ const formSchema = z.object({
 
 export function Contact() {
   const { toast } = useToast();
-  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    },
+    defaultValues: { name: "", email: "", subject: "", message: "" },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // In a real app, this would be an API call
-    console.log(values);
-    toast({
-      title: "Message Sent!",
-      description: "We'll get back to you within 12 hours.",
-    });
-    form.reset();
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsSubmitting(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error ?? "Failed to send message.");
+      toast({ title: "Message Sent!", description: "We'll get back to you within 12 hours." });
+      form.reset();
+    } catch (err: unknown) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: err instanceof Error ? err.message : "Failed to send message. Please try emailing us directly.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
     <section id="contact" className="py-24 bg-background relative z-10">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          
+
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -70,7 +79,7 @@ export function Contact() {
             <p className="text-lg text-muted-foreground mb-8">
               Need help with a purchase or have questions about our services? Our team is ready to assist.
             </p>
-            
+
             <div className="space-y-6 mb-8">
               <div className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border/50">
                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
@@ -81,26 +90,19 @@ export function Contact() {
                   <p className="text-muted-foreground text-sm">&lt; 12 hours guaranteed</p>
                 </div>
               </div>
-              
+
               <div className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border/50">
-                <div className="w-12 h-12 rounded-full bg-[#5865F2]/10 flex items-center justify-center text-[#5865F2]">
-                  <SiDiscord className="w-6 h-6" />
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                  <Mail className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="font-semibold">Discord Support</h3>
-                  <p className="text-muted-foreground text-sm">Open a ticket in our server for fastest replies.</p>
+                  <h3 className="font-semibold">Email Support</h3>
+                  <a href="mailto:rameediscord@gmail.com" className="text-muted-foreground text-sm hover:text-primary transition-colors">
+                    rameediscord@gmail.com
+                  </a>
                 </div>
               </div>
             </div>
-
-            <Button 
-              className="w-full sm:w-auto gap-2 bg-[#5865F2] hover:bg-[#4752C4] text-white" 
-              size="lg"
-              data-testid="button-contact-discord"
-            >
-              <SiDiscord className="w-5 h-5" />
-              Join Discord Server
-            </Button>
           </motion.div>
 
           <motion.div
@@ -156,6 +158,7 @@ export function Contact() {
                           <SelectContent>
                             <SelectItem value="support">General Support</SelectItem>
                             <SelectItem value="billing">Billing Issue</SelectItem>
+                            <SelectItem value="refund">Refund Request</SelectItem>
                             <SelectItem value="sales">Sales Inquiry</SelectItem>
                             <SelectItem value="other">Other</SelectItem>
                           </SelectContent>
@@ -172,10 +175,10 @@ export function Contact() {
                       <FormItem>
                         <FormLabel>Message</FormLabel>
                         <FormControl>
-                          <Textarea 
-                            placeholder="How can we help you?" 
-                            className="min-h-[120px] bg-background resize-none" 
-                            {...field} 
+                          <Textarea
+                            placeholder="How can we help you?"
+                            className="min-h-[120px] bg-background resize-none"
+                            {...field}
                           />
                         </FormControl>
                         <FormMessage />
@@ -183,8 +186,8 @@ export function Contact() {
                     )}
                   />
 
-                  <Button type="submit" className="w-full" data-testid="button-submit-contact">
-                    Send Message
+                  <Button type="submit" className="w-full" disabled={isSubmitting}>
+                    {isSubmitting ? "Sending..." : "Send Message"}
                   </Button>
                 </form>
               </Form>

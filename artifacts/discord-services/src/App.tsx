@@ -19,6 +19,11 @@ import { CookieNotice } from "@/components/CookieNotice";
 import { Privacy } from "@/pages/Privacy";
 import { Terms } from "@/pages/Terms";
 import { Refund } from "@/pages/Refund";
+import { Cookies } from "@/pages/Cookies";
+import { About } from "@/pages/About";
+import { ContactPage } from "@/pages/ContactPage";
+import { Checkout } from "@/pages/Checkout";
+import { OrderConfirmation } from "@/pages/OrderConfirmation";
 
 const queryClient = new QueryClient();
 
@@ -49,6 +54,11 @@ function Router() {
       <Route path="/privacy" component={Privacy} />
       <Route path="/terms" component={Terms} />
       <Route path="/refund" component={Refund} />
+      <Route path="/cookies" component={Cookies} />
+      <Route path="/about" component={About} />
+      <Route path="/contact" component={ContactPage} />
+      <Route path="/checkout" component={Checkout} />
+      <Route path="/order-confirmation/:orderId" component={OrderConfirmation} />
       <Route component={NotFound} />
     </Switch>
   );

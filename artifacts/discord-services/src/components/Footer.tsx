@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { SiDiscord } from "react-icons/si";
+import { ShieldCheck } from "lucide-react";
 
 export function Footer() {
   return (
@@ -14,23 +14,19 @@ export function Footer() {
               <span className="font-bold text-xl tracking-tight text-foreground">NexusHub</span>
             </Link>
             <p className="text-sm text-muted-foreground mb-6">
-              Premium digital services, tools, and coaching delivered instantly through Discord. Level up your digital journey today.
+              Premium digital services, tools, and memberships delivered instantly. Level up your digital journey today.
             </p>
-            <a 
-              href="#" 
-              className="inline-flex items-center justify-center rounded-md bg-[#5865F2] hover:bg-[#4752C4] px-4 py-2 text-sm font-medium text-white transition-colors gap-2 w-max"
-              data-testid="button-footer-discord"
-            >
-              <SiDiscord className="w-4 h-4" />
-              Join Community
-            </a>
+            <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+              <ShieldCheck className="w-4 h-4 text-emerald-400" />
+              <span>SSL Secured · Powered by Paddle</span>
+            </div>
           </div>
 
           <div>
             <h3 className="font-semibold text-foreground mb-4">Services</h3>
             <ul className="space-y-3">
               <li><a href="#services" className="text-sm text-muted-foreground hover:text-primary transition-colors">VIP Memberships</a></li>
-              <li><a href="#services" className="text-sm text-muted-foreground hover:text-primary transition-colors">Premium Bots</a></li>
+              <li><a href="#services" className="text-sm text-muted-foreground hover:text-primary transition-colors">Premium Tools</a></li>
               <li><a href="#services" className="text-sm text-muted-foreground hover:text-primary transition-colors">Gaming Coaching</a></li>
               <li><a href="#services" className="text-sm text-muted-foreground hover:text-primary transition-colors">Marketplace Tools</a></li>
             </ul>
@@ -39,10 +35,10 @@ export function Footer() {
           <div>
             <h3 className="font-semibold text-foreground mb-4">Company</h3>
             <ul className="space-y-3">
-              <li><a href="#about" className="text-sm text-muted-foreground hover:text-primary transition-colors">About Us</a></li>
+              <li><Link href="/about" className="text-sm text-muted-foreground hover:text-primary transition-colors">About Us</Link></li>
               <li><a href="#faq" className="text-sm text-muted-foreground hover:text-primary transition-colors">FAQ</a></li>
-              <li><a href="#contact" className="text-sm text-muted-foreground hover:text-primary transition-colors">Contact Support</a></li>
-              <li><a href="mailto:support@nexushub.gg" className="text-sm text-muted-foreground hover:text-primary transition-colors">support@nexushub.gg</a></li>
+              <li><Link href="/contact" className="text-sm text-muted-foreground hover:text-primary transition-colors">Contact</Link></li>
+              <li><a href="mailto:rameediscord@gmail.com" className="text-sm text-muted-foreground hover:text-primary transition-colors">rameediscord@gmail.com</a></li>
             </ul>
           </div>
 
@@ -52,6 +48,7 @@ export function Footer() {
               <li><Link href="/terms" className="text-sm text-muted-foreground hover:text-primary transition-colors">Terms of Service</Link></li>
               <li><Link href="/privacy" className="text-sm text-muted-foreground hover:text-primary transition-colors">Privacy Policy</Link></li>
               <li><Link href="/refund" className="text-sm text-muted-foreground hover:text-primary transition-colors">Refund Policy</Link></li>
+              <li><Link href="/cookies" className="text-sm text-muted-foreground hover:text-primary transition-colors">Cookie Policy</Link></li>
             </ul>
           </div>
         </div>
@@ -60,9 +57,12 @@ export function Footer() {
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} NexusHub. All rights reserved.
           </p>
-          <p className="text-sm text-muted-foreground flex items-center gap-1">
-            Secure payments powered by Lemon Squeezy
-          </p>
+          <div className="flex items-center gap-4">
+            <Link href="/privacy" className="text-xs text-muted-foreground hover:text-primary transition-colors">Privacy</Link>
+            <Link href="/terms" className="text-xs text-muted-foreground hover:text-primary transition-colors">Terms</Link>
+            <Link href="/refund" className="text-xs text-muted-foreground hover:text-primary transition-colors">Refund</Link>
+            <Link href="/cookies" className="text-xs text-muted-foreground hover:text-primary transition-colors">Cookies</Link>
+          </div>
         </div>
       </div>
     </footer>
