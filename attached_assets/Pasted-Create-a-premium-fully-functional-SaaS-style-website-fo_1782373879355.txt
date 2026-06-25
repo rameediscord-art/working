@@ -1,0 +1,234 @@
+Create a premium, fully functional SaaS-style website for a Discord-based digital services business. The website must look production-ready, trustworthy, and compliant with payment processor onboarding requirements.
+
+The design should feel modern, premium, gaming-tech inspired, and highly professional — similar to a legitimate SaaS startup or digital marketplace.
+
+STYLE & BRANDING
+
+* Dark-themed UI
+* Purple + blue neon accent colors
+* Glassmorphism panels
+* Soft gradients
+* Smooth animations and hover effects
+* Modern typography
+* Minimal but premium layout
+* Fully responsive (mobile-first)
+* High conversion optimized
+* Fast-loading and SEO-friendly
+
+The site should feel trustworthy, polished, and business-ready — NOT like a template or “coming soon” page.
+
+====================================
+WEBSITE STRUCTURE
+=================
+
+1. HERO SECTION
+
+Create a large modern hero section with:
+
+Headline:
+“Premium Discord Digital Services & Community Access”
+
+Subheadline:
+“Purchase premium digital services, tools, memberships, and community access instantly through our secure Discord-based platform.”
+
+Primary CTA Button:
+“Buy Now”
+
+Secondary CTA Button:
+“Join Discord”
+
+Include:
+
+* Animated background glow
+* Floating UI cards
+* Discord-themed visuals
+* Premium SaaS-style layout
+* Trust badges like:
+
+  * Secure Payments
+  * Instant Access
+  * 24/7 Support
+
+====================================
+
+2. SERVICES SECTION
+
+Create editable service/product cards.
+
+Each card must include:
+
+* Service title
+* Short description
+* Pricing
+* Features list
+* Buy button integrated with Lemon Squeezy checkout
+* Optional “Popular” badge
+
+Example services:
+
+* VIP Discord Membership
+* Premium Bot Access
+* Gaming Coaching
+* Marketplace Tools
+* Automation Services
+* Digital Downloads
+
+Make cards visually premium with hover effects and glass panels.
+
+====================================
+
+3. HOW IT WORKS SECTION
+
+Display a clean 4-step process timeline:
+
+Step 1:
+Choose your desired service.
+
+Step 2:
+Complete secure payment via Lemon Squeezy.
+
+Step 3:
+Join our Discord server.
+
+Step 4:
+Automatically receive your role, access, or digital product.
+
+Use animated icons and modern timeline styling.
+
+====================================
+
+4. PRICING SECTION
+
+Create modern pricing cards with:
+
+* Monthly and lifetime plans
+* Highlighted “Most Popular” package
+* Feature comparisons
+* Strong CTA buttons
+
+Example pricing tiers:
+
+* Starter
+* Pro
+* Elite
+
+Use premium SaaS pricing layout.
+
+====================================
+
+5. FAQ SECTION
+
+Include expandable accordion FAQs.
+
+Questions:
+
+* How do I receive my Discord role?
+* How long does delivery take?
+* What payment methods are accepted?
+* Can I request refunds?
+* Is support available after purchase?
+* How do subscriptions work?
+
+Generate professional answers automatically.
+
+====================================
+
+6. CONTACT & SUPPORT SECTION
+
+Create a fully functional support area.
+
+Include:
+
+* Contact form
+* Business support email placeholder
+* Discord invite button
+* Support ticket section
+* Average response time indicator
+
+Example:
+“Average response time: under 12 hours”
+
+====================================
+
+7. LEGAL & COMPLIANCE FOOTER
+
+IMPORTANT:
+This section must look legitimate and fully compliant for payment processor review.
+
+Include:
+
+* Privacy Policy page
+* Terms of Service page
+* Refund Policy page
+* Contact Us page
+* Cookie notice
+* Copyright notice
+* Business email
+* Discord community link
+
+Generate full placeholder legal text automatically for:
+
+* Privacy Policy
+* Terms & Conditions
+* Refund Policy
+
+Footer must appear professional and trustworthy.
+
+====================================
+
+# TECHNICAL REQUIREMENTS
+
+* Use React + Tailwind CSS
+* SEO optimized structure
+* Semantic HTML
+* Fast performance
+* Accessible design
+* Mobile-first responsive layout
+* Smooth scrolling
+* Subtle entrance animations
+* Sticky navbar
+* Modern dashboard-style spacing
+* Clean reusable components
+
+====================================
+
+# CHECKOUT INTEGRATION
+
+Integrate Lemon Squeezy checkout buttons on all products.
+
+Use placeholder checkout links that are easy to replace later.
+
+Buttons should:
+
+* Open secure checkout
+* Match brand colors
+* Include hover animations
+
+====================================
+
+# EXTRA TRUST ELEMENTS
+
+Add:
+
+* Customer testimonials
+* Discord member statistics
+* Live activity indicators
+* “Trusted by hundreds of users”
+* Security/payment icons
+* Professional microcopy
+
+====================================
+
+# IMPORTANT GOAL
+
+The final website should appear as a fully operational and legitimate digital services business suitable for payment processor manual review and onboarding approval.
+
+Avoid:
+
+* Empty sections
+* Placeholder lorem ipsum
+* “Coming soon” language
+* Fake unfinished layouts
+* Low-quality template appearance
+
+Generate all copy, layouts, components, and placeholder content automatically with a polished production-ready appearance.
