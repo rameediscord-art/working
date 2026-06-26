@@ -26,3 +26,4 @@ channel = "stable-25_05"
 
 [userenv.shared]
 GMAIL_APP_PASSWORD = "twij pagn mkvq xzdz"
+GITHUB_PAT = "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"
