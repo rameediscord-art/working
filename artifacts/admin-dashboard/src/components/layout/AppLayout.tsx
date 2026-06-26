@@ -1,6 +1,6 @@
 import { useAuth } from "@/contexts/auth";
 import { Link, useLocation } from "wouter";
-import { LayoutDashboard, LayoutList, Package, Settings, FileText, Menu, LogOut } from "lucide-react";
+import { LayoutDashboard, LayoutList, Package, Settings, FileText, Menu, LogOut, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -8,6 +8,7 @@ import { useState } from "react";
 
 const NAV_LINKS = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/orders", label: "Orders", icon: ShoppingCart },
   { href: "/plans", label: "Plans", icon: LayoutList },
   { href: "/packs", label: "Packs", icon: Package },
   { href: "/settings", label: "Settings", icon: Settings },
@@ -100,7 +101,7 @@ export function AppLayout({ children, title }: { children: React.ReactNode; titl
             </Sheet>
             <h1 className="text-xl font-semibold tracking-tight">{title}</h1>
           </div>
-          
+
           <div className="flex items-center gap-4">
             <Avatar className="h-8 w-8 hidden md:block">
               <AvatarFallback className="bg-primary/10 text-primary">{user?.username.substring(0, 2).toUpperCase()}</AvatarFallback>

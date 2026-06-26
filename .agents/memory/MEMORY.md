@@ -1,0 +1,3 @@
+- [DB imports rule](db-imports.md) — always import `db` from `@workspace/db`, never from a local path
+- [OpenAPI naming rule](openapi-naming.md) — never name schemas `<OperationIdPascal>Response` or `Body` — causes TS2308
+- [Email setup](email-setup.md) — Nodemailer + Gmail SMTP, GMAIL_APP_PASSWORD env var for rameediscord@gmail.com

@@ -8,11 +8,13 @@ import { AuthProvider } from "@/contexts/auth";
 import { AuthGuard } from "@/components/layout/AuthGuard";
 
 import Login from "@/pages/login";
+import ResetPassword from "@/pages/reset-password";
 import Dashboard from "@/pages/dashboard";
 import Plans from "@/pages/plans";
 import Packs from "@/pages/packs";
 import Settings from "@/pages/settings";
 import AuditLogs from "@/pages/audit-logs";
+import Orders from "@/pages/orders";
 
 const queryClient = new QueryClient();
 
@@ -20,7 +22,8 @@ function Router() {
   return (
     <Switch>
       <Route path="/login" component={Login} />
-      
+      <Route path="/reset-password" component={ResetPassword} />
+
       {/* Protected Routes */}
       <Route path="/">
         <AuthGuard><Dashboard /></AuthGuard>
@@ -36,6 +39,9 @@ function Router() {
       </Route>
       <Route path="/audit-logs">
         <AuthGuard><AuditLogs /></AuthGuard>
+      </Route>
+      <Route path="/orders">
+        <AuthGuard><Orders /></AuthGuard>
       </Route>
 
       <Route component={NotFound} />

@@ -1,8 +1,7 @@
 import { Router, type Request } from "express";
 import crypto from "crypto";
 import bcrypt from "bcrypt";
-import { db } from "../../db";
-import { adminUsersTable, passwordResetTokensTable } from "@workspace/db";
+import { db, adminUsersTable, passwordResetTokensTable } from "@workspace/db";
 import { eq, and, gt } from "drizzle-orm";
 import { sendPasswordResetEmail } from "../../lib/email";
 import { logger } from "../../lib/logger";

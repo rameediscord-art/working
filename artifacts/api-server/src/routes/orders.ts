@@ -1,6 +1,5 @@
 import { Router } from "express";
-import { db } from "../db";
-import { ordersTable, membershipPlansTable } from "@workspace/db";
+import { db, ordersTable, membershipPlansTable } from "@workspace/db";
 import { eq, or, ilike, and, sql, desc } from "drizzle-orm";
 import { requireAuth } from "../middlewares/requireAuth";
 import { sendOrderConfirmationEmail } from "../lib/email";
