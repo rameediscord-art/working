@@ -13,7 +13,6 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -22,10 +21,8 @@ import { Badge } from "@/components/ui/badge";
 const planSchema = z.object({
   name: z.string().min(1, "Name is required"),
   price: z.string().min(1, "Price is required"),
-  billingCycle: z.enum(["monthly", "yearly", "lifetime", "one_time"]),
   description: z.string().optional(),
   features: z.array(z.string()).default([]),
-  checkoutUrl: z.string().url("Must be a valid URL").optional().or(z.literal("")),
   isActive: z.boolean().default(true),
   isFeatured: z.boolean().default(false),
 });
@@ -34,7 +31,7 @@ export default function Plans() {
   const { data: plans = [], isLoading } = useListAdminPlans();
   const queryClient = useQueryClient();
   const { toast } = useToast();
-  
+
   const createPlan = useCreateAdminPlan();
   const updatePlan = useUpdateAdminPlan();
   const deletePlan = useDeleteAdminPlan();
@@ -48,10 +45,8 @@ export default function Plans() {
     defaultValues: {
       name: "",
       price: "",
-      billingCycle: "monthly",
       description: "",
       features: [],
-      checkoutUrl: "",
       isActive: true,
       isFeatured: false,
     }
@@ -61,16 +56,7 @@ export default function Plans() {
 
   const openAddModal = () => {
     setEditingPlan(null);
-    form.reset({
-      name: "",
-      price: "",
-      billingCycle: "monthly",
-      description: "",
-      features: [],
-      checkoutUrl: "",
-      isActive: true,
-      isFeatured: false,
-    });
+    form.reset({ name: "", price: "", description: "", features: [], isActive: true, isFeatured: false });
     setFeatureInput("");
     setIsModalOpen(true);
   };
@@ -79,11 +65,9 @@ export default function Plans() {
     setEditingPlan(plan);
     form.reset({
       name: plan.name,
-      price: plan.price.toString(),
-      billingCycle: plan.billingCycle,
+      price: String(plan.price),
       description: plan.description || "",
       features: plan.features || [],
-      checkoutUrl: plan.checkoutUrl || "",
       isActive: plan.isActive,
       isFeatured: plan.isFeatured,
     });
@@ -92,21 +76,24 @@ export default function Plans() {
   };
 
   const onSubmit = (values: z.infer<typeof planSchema>) => {
+    const payload = { ...values, price: Number(values.price), billingCycle: "one_time" as const };
     if (editingPlan) {
-      updatePlan.mutate({ id: editingPlan.id, data: { ...values, price: Number(values.price) } }, {
+      updatePlan.mutate({ id: editingPlan.id, data: payload }, {
         onSuccess: () => {
           queryClient.invalidateQueries({ queryKey: getListAdminPlansQueryKey() });
-          toast({ title: "Success", description: "Plan updated successfully." });
+          toast({ title: "Success", description: "Product updated." });
           setIsModalOpen(false);
-        }
+        },
+        onError: () => toast({ title: "Error", description: "Failed to update product.", variant: "destructive" }),
       });
     } else {
-      createPlan.mutate({ data: { ...values, price: Number(values.price) } as MembershipPlanInput }, {
+      createPlan.mutate({ data: payload as MembershipPlanInput }, {
         onSuccess: () => {
           queryClient.invalidateQueries({ queryKey: getListAdminPlansQueryKey() });
-          toast({ title: "Success", description: "Plan created successfully." });
+          toast({ title: "Success", description: "Product created." });
           setIsModalOpen(false);
-        }
+        },
+        onError: () => toast({ title: "Error", description: "Failed to create product.", variant: "destructive" }),
       });
     }
   };
@@ -116,7 +103,7 @@ export default function Plans() {
     deletePlan.mutate({ id: planToDelete.id }, {
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: getListAdminPlansQueryKey() });
-        toast({ title: "Success", description: "Plan deleted successfully." });
+        toast({ title: "Success", description: "Product deleted." });
         setPlanToDelete(null);
       }
     });
@@ -124,9 +111,7 @@ export default function Plans() {
 
   const handleToggle = (id: number, field: "isActive" | "isFeatured", currentValue: boolean) => {
     updatePlan.mutate({ id, data: { [field]: !currentValue } }, {
-      onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: getListAdminPlansQueryKey() });
-      }
+      onSuccess: () => queryClient.invalidateQueries({ queryKey: getListAdminPlansQueryKey() }),
     });
   };
 
@@ -136,25 +121,22 @@ export default function Plans() {
       const val = featureInput.trim().replace(/,$/, "");
       if (val) {
         const current = form.getValues("features");
-        if (!current.includes(val)) {
-          form.setValue("features", [...current, val], { shouldDirty: true });
-        }
+        if (!current.includes(val)) form.setValue("features", [...current, val], { shouldDirty: true });
         setFeatureInput("");
       }
     }
   };
 
   const removeFeature = (idx: number) => {
-    const current = form.getValues("features");
-    form.setValue("features", current.filter((_, i) => i !== idx), { shouldDirty: true });
+    form.setValue("features", form.getValues("features").filter((_, i) => i !== idx), { shouldDirty: true });
   };
 
   return (
-    <AppLayout title="Membership Plans">
+    <AppLayout title="Products">
       <div className="flex justify-between items-center mb-6">
-        <p className="text-muted-foreground">Manage your subscription tiers and pricing.</p>
-        <Button onClick={openAddModal} data-testid="button-add-plan" className="gap-2">
-          <Plus className="h-4 w-4" /> Add Plan
+        <p className="text-muted-foreground">Manage your one-time purchase products and pricing.</p>
+        <Button onClick={openAddModal} className="gap-2">
+          <Plus className="h-4 w-4" /> Add Product
         </Button>
       </div>
 
@@ -164,8 +146,8 @@ export default function Plans() {
             <TableRow>
               <TableHead>Name</TableHead>
               <TableHead>Price</TableHead>
-              <TableHead>Billing</TableHead>
-              <TableHead>Status</TableHead>
+              <TableHead>Type</TableHead>
+              <TableHead>Active</TableHead>
               <TableHead>Featured</TableHead>
               <TableHead className="text-right">Actions</TableHead>
             </TableRow>
@@ -177,25 +159,25 @@ export default function Plans() {
               </TableRow>
             ) : plans.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={6} className="text-center py-8 text-muted-foreground">No plans found. Create one to get started.</TableCell>
+                <TableCell colSpan={6} className="text-center py-8 text-muted-foreground">
+                  No products yet. Add one to get started.
+                </TableCell>
               </TableRow>
             ) : (
               plans.map((plan) => (
                 <TableRow key={plan.id}>
                   <TableCell className="font-medium">{plan.name}</TableCell>
-                  <TableCell>${plan.price}</TableCell>
-                  <TableCell className="capitalize">{plan.billingCycle.replace("_", " ")}</TableCell>
+                  <TableCell className="font-semibold">${plan.price}</TableCell>
                   <TableCell>
-                    <Switch 
-                      checked={plan.isActive} 
-                      onCheckedChange={() => handleToggle(plan.id, "isActive", plan.isActive)} 
-                    />
+                    <Badge variant="outline" className="text-xs text-emerald-400 border-emerald-500/30 bg-emerald-500/10">
+                      One-Time
+                    </Badge>
                   </TableCell>
                   <TableCell>
-                    <Switch 
-                      checked={plan.isFeatured} 
-                      onCheckedChange={() => handleToggle(plan.id, "isFeatured", plan.isFeatured)} 
-                    />
+                    <Switch checked={plan.isActive} onCheckedChange={() => handleToggle(plan.id, "isActive", plan.isActive)} />
+                  </TableCell>
+                  <TableCell>
+                    <Switch checked={plan.isFeatured} onCheckedChange={() => handleToggle(plan.id, "isFeatured", plan.isFeatured)} />
                   </TableCell>
                   <TableCell className="text-right">
                     <div className="flex justify-end gap-2">
@@ -215,106 +197,75 @@ export default function Plans() {
       </div>
 
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle>{editingPlan ? 'Edit Plan' : 'Add New Plan'}</DialogTitle>
+            <DialogTitle>{editingPlan ? "Edit Product" : "Add New Product"}</DialogTitle>
           </DialogHeader>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 pt-4">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 pt-2">
               <div className="grid grid-cols-2 gap-4">
                 <FormField control={form.control} name="name" render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Name</FormLabel>
-                    <FormControl><Input placeholder="e.g. Pro Tier" {...field} /></FormControl>
+                    <FormLabel>Product Name</FormLabel>
+                    <FormControl><Input placeholder="e.g. Discord Access" {...field} /></FormControl>
                     <FormMessage />
                   </FormItem>
                 )} />
                 <FormField control={form.control} name="price" render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Price</FormLabel>
-                    <FormControl><Input placeholder="9.99" type="number" step="0.01" {...field} /></FormControl>
+                    <FormLabel>Price (USD)</FormLabel>
+                    <FormControl><Input placeholder="14.00" type="number" step="0.01" min="0" {...field} /></FormControl>
                     <FormMessage />
                   </FormItem>
                 )} />
               </div>
-              
-              <FormField control={form.control} name="billingCycle" render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Billing Cycle</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger><SelectValue placeholder="Select cycle" /></SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="monthly">Monthly</SelectItem>
-                      <SelectItem value="yearly">Yearly</SelectItem>
-                      <SelectItem value="lifetime">Lifetime</SelectItem>
-                      <SelectItem value="one_time">One Time</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )} />
 
               <FormField control={form.control} name="description" render={({ field }) => (
                 <FormItem>
                   <FormLabel>Description</FormLabel>
-                  <FormControl><Textarea placeholder="Brief description of the plan" {...field} /></FormControl>
+                  <FormControl><Textarea placeholder="Brief description shown on the pricing page" {...field} className="resize-none" rows={3} /></FormControl>
                   <FormMessage />
                 </FormItem>
               )} />
 
               <FormField control={form.control} name="features" render={() => (
                 <FormItem>
-                  <FormLabel>Features (Press Enter to add)</FormLabel>
+                  <FormLabel>Features (press Enter to add)</FormLabel>
                   <FormControl>
                     <div className="space-y-2">
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-2 min-h-[32px]">
                         {form.watch("features").map((f, idx) => (
                           <Badge key={idx} variant="secondary" className="gap-1 px-2 py-1">
                             {f}
-                            <button type="button" onClick={() => removeFeature(idx)} className="text-muted-foreground hover:text-foreground">
+                            <button type="button" onClick={() => removeFeature(idx)} className="text-muted-foreground hover:text-foreground ml-0.5">
                               <X className="h-3 w-3" />
                             </button>
                           </Badge>
                         ))}
                       </div>
-                      <Input 
-                        value={featureInput} 
-                        onChange={(e) => setFeatureInput(e.target.value)} 
+                      <Input
+                        value={featureInput}
+                        onChange={(e) => setFeatureInput(e.target.value)}
                         onKeyDown={addFeature}
                         onBlur={addFeature}
-                        placeholder="Type a feature and press Enter..." 
+                        placeholder="Type a feature and press Enter..."
                       />
                     </div>
                   </FormControl>
-                  <FormMessage />
                 </FormItem>
               )} />
 
-              <FormField control={form.control} name="checkoutUrl" render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Checkout URL (Optional)</FormLabel>
-                  <FormControl><Input placeholder="https://..." {...field} /></FormControl>
-                  <FormMessage />
-                </FormItem>
-              )} />
-
-              <div className="flex gap-8">
+              <div className="flex gap-4">
                 <FormField control={form.control} name="isActive" render={({ field }) => (
                   <FormItem className="flex flex-row items-center gap-3 space-y-0 rounded-lg border p-4 flex-1">
                     <FormControl><Switch checked={field.value} onCheckedChange={field.onChange} /></FormControl>
-                    <div className="space-y-1 leading-none">
-                      <FormLabel>Active</FormLabel>
-                    </div>
+                    <FormLabel className="font-normal cursor-pointer">Active (visible on site)</FormLabel>
                   </FormItem>
                 )} />
                 <FormField control={form.control} name="isFeatured" render={({ field }) => (
                   <FormItem className="flex flex-row items-center gap-3 space-y-0 rounded-lg border p-4 flex-1">
                     <FormControl><Switch checked={field.value} onCheckedChange={field.onChange} /></FormControl>
-                    <div className="space-y-1 leading-none">
-                      <FormLabel>Featured</FormLabel>
-                    </div>
+                    <FormLabel className="font-normal cursor-pointer">Featured (best value badge)</FormLabel>
                   </FormItem>
                 )} />
               </div>
@@ -322,7 +273,7 @@ export default function Plans() {
               <DialogFooter>
                 <Button type="button" variant="outline" onClick={() => setIsModalOpen(false)}>Cancel</Button>
                 <Button type="submit" disabled={createPlan.isPending || updatePlan.isPending}>
-                  {editingPlan ? 'Save Changes' : 'Create Plan'}
+                  {editingPlan ? "Save Changes" : "Create Product"}
                 </Button>
               </DialogFooter>
             </form>
@@ -333,9 +284,9 @@ export default function Plans() {
       <AlertDialog open={!!planToDelete} onOpenChange={(o) => !o && setPlanToDelete(null)}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+            <AlertDialogTitle>Delete "{planToDelete?.name}"?</AlertDialogTitle>
             <AlertDialogDescription>
-              This will permanently delete '{planToDelete?.name}'. This cannot be undone.
+              This will permanently remove this product. This action cannot be undone.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

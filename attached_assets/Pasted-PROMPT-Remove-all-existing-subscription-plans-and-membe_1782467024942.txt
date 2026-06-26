@@ -1,0 +1,39 @@
+PROMPT:
+
+Remove all existing subscription plans and membership tiers completely. Replace them with exactly 3 one-time purchase products only. There is no monthly billing, no recurring charges, no subscriptions of any kind. Every purchase is a single one-time payment.
+
+Product 1 — Discord Access
+
+Price: $14 one-time
+What the customer gets: permanent access to the private Discord server
+Label on the card: "One-Time Payment"
+No expiry, no renewal
+
+
+Product 2 — Live 1-on-1 Session
+
+Price: $60 one-time
+What the customer gets: one private live session lasting 2 hours, scheduled after purchase
+Label on the card: "One-Time Payment"
+After purchase, customer will be contacted at their email to schedule the session
+
+
+Product 3 — Full Bundle
+
+Price: $120 one-time
+What the customer gets: everything in Product 1 (Discord Access) + everything in Product 2 (Live 1-on-1 Session) + full access to all resources and materials for 30 days
+Label on the card: "One-Time Payment"
+Best value badge on this card
+After purchase, customer will be contacted at their email to schedule the live session and receive Discord invite
+
+
+Rules to follow:
+
+Delete every mention of "monthly", "yearly", "subscription", "renews", "billing cycle", "cancel anytime" from the entire site
+On the pricing page, show all 3 products side by side as clean cards
+Each card must show: product name, price, what is included, and a Buy Now button
+On checkout, the customer selects which product they want, enters their name and email, and submits
+After successful order submission, generate an Order ID in format ORD-YYYYMMDD-XXXXX and show it on the confirmation page
+Send the customer a confirmation email with their Order ID, product name, price paid, and a message saying they will be contacted shortly
+In the Admin Dashboard, update the Products section so admin can edit the name, price, and description of all 3 products
+Update all legal pages (Terms of Service, Refund Policy) to reflect one-time purchases only — remove any language about subscriptions or recurring billing

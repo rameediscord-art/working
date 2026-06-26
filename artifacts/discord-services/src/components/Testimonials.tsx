@@ -8,7 +8,7 @@ const testimonials = [
     name: "Alex Mercer",
     username: "@alexcodes",
     rating: 5,
-    quote: "Got the Pro tier and the coaching session alone was worth the monthly price. Reached my target rank in a week.",
+    quote: "Bought the Full Bundle — the live session alone was worth every dollar. Reached my goal in a week flat.",
     initials: "AM",
   },
   {

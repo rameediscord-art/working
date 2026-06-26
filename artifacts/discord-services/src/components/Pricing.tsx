@@ -1,156 +1,161 @@
 import { motion } from "framer-motion";
-import { Check } from "lucide-react";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { Check, Zap, Users, Star } from "lucide-react";
 import { Link } from "wouter";
 
-const tiers = [
+const products = [
   {
-    name: "Starter",
-    description: "Perfect for individuals looking to get started.",
-    monthlyPrice: "$9.99",
-    lifetimePrice: "$79",
-    billing: { monthly: "/month", lifetime: " one-time" },
-    features: ["VIP community access", "1 premium tool license", "Email support", "All standard features"],
-    popular: false,
+    id: "discord-access",
+    icon: <Users className="w-6 h-6" />,
+    name: "Discord Access",
+    price: "14",
+    label: "One-Time Payment",
+    description: "Permanent access to the private community. Pay once, stay forever.",
+    features: [
+      "Permanent Discord server access",
+      "Private members-only channels",
+      "Exclusive resources & updates",
+      "No renewal, no expiry",
+    ],
+    badge: null,
+    featured: false,
+    cta: "Get Access",
   },
   {
-    name: "Pro",
-    description: "Ideal for power users who need more features.",
-    monthlyPrice: "$24.99",
-    lifetimePrice: "$199",
-    billing: { monthly: "/month", lifetime: " one-time" },
+    id: "full-bundle",
+    icon: <Star className="w-6 h-6" />,
+    name: "Full Bundle",
+    price: "120",
+    label: "One-Time Payment",
+    description: "Everything included — Discord access, a live session, and all resources for 30 days.",
     features: [
-      "Everything in Starter",
-      "Up to 3 premium tool licenses",
-      "1 coaching session/month",
-      "Marketplace tools access",
-      "Priority support within 12h",
+      "Everything in Discord Access",
+      "1× private live session (2 hours)",
+      "Full resource library access (30 days)",
+      "Scheduled directly after purchase",
+      "Discord invite sent immediately",
     ],
-    popular: true,
+    badge: "Best Value",
+    featured: true,
+    cta: "Get the Bundle",
   },
   {
-    name: "Elite",
-    description: "The ultimate package for serious digital entrepreneurs.",
-    monthlyPrice: "$49.99",
-    lifetimePrice: "$399",
-    billing: { monthly: "/month", lifetime: " one-time" },
+    id: "live-session",
+    icon: <Zap className="w-6 h-6" />,
+    name: "Live 1-on-1 Session",
+    price: "60",
+    label: "One-Time Payment",
+    description: "One private live session, 2 hours long. Scheduled at a time that works for you.",
     features: [
-      "Everything in Pro",
-      "Unlimited tool licenses",
-      "Weekly coaching sessions",
-      "Full automation suite",
-      "Dedicated support line",
-      "Early beta access",
+      "2-hour private live session",
+      "Scheduled after purchase via email",
+      "Fully personalised to your goals",
+      "No subscription required",
     ],
-    popular: false,
+    badge: null,
+    featured: false,
+    cta: "Book a Session",
   },
 ];
 
 export function Pricing() {
-  const [billingCycle, setBillingCycle] = useState<"monthly" | "lifetime">("monthly");
-
   return (
     <section id="pricing" className="py-24 bg-background/50 relative z-10">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">Simple, Transparent Pricing</h2>
-          <p className="text-lg text-muted-foreground mb-8">
-            Choose the perfect plan for your needs. All prices are in USD. No hidden fees, cancel anytime.
-          </p>
-
-          <div className="inline-flex items-center p-1 bg-muted/50 rounded-full border border-border/50">
-            <button
-              onClick={() => setBillingCycle("monthly")}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-colors ${
-                billingCycle === "monthly"
-                  ? "bg-background text-foreground shadow-sm"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              Monthly
-            </button>
-            <button
-              onClick={() => setBillingCycle("lifetime")}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-colors ${
-                billingCycle === "lifetime"
-                  ? "bg-background text-foreground shadow-sm"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              Lifetime <span className="ml-1 text-xs text-emerald-400 font-bold">Save ~30%</span>
-            </button>
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-sm font-medium text-primary mb-6">
+            <span className="flex h-2 w-2 rounded-full bg-primary mr-2" />
+            Simple Pricing
           </div>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+            Three Products. One-Time Payment.
+          </h2>
+          <p className="text-lg text-muted-foreground">
+            No subscriptions. No hidden fees. No renewals. You pay once and you're in — permanently.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {tiers.map((tier, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto items-stretch">
+          {products.map((product, index) => (
             <motion.div
-              key={tier.name}
-              initial={{ opacity: 0, y: 20 }}
+              key={product.id}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`relative ${tier.popular ? "md:-mt-4 md:mb-4" : ""}`}
+              className={`relative flex flex-col rounded-2xl border ${
+                product.featured
+                  ? "border-primary/60 bg-gradient-to-b from-primary/10 via-card/60 to-card/40 shadow-[0_0_40px_rgba(124,58,237,0.18)]"
+                  : "border-border/50 bg-card/40"
+              } backdrop-blur-sm`}
             >
-              {tier.popular && (
-                <div className="absolute inset-0 bg-gradient-to-b from-primary/20 to-secondary/20 blur-xl rounded-3xl" />
+              {product.badge && (
+                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-10">
+                  <span className="inline-flex items-center gap-1 bg-primary text-primary-foreground text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider shadow-lg">
+                    <Star className="w-3 h-3 fill-current" /> {product.badge}
+                  </span>
+                </div>
               )}
-              <Card
-                className={`h-full relative flex flex-col bg-card/40 backdrop-blur-sm border-border/50 ${
-                  tier.popular ? "border-primary/50 shadow-[0_0_30px_rgba(124,58,237,0.15)]" : ""
-                }`}
-              >
-                {tier.popular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-primary-foreground text-xs font-bold rounded-full uppercase tracking-wider">
-                    Most Popular
+
+              <div className="p-8 flex flex-col flex-1">
+                {/* Icon + Name */}
+                <div className="flex items-center gap-3 mb-6">
+                  <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 ${product.featured ? "bg-primary text-primary-foreground" : "bg-primary/10 text-primary"}`}>
+                    {product.icon}
                   </div>
-                )}
-                <CardHeader>
-                  <CardTitle className="text-2xl">{tier.name}</CardTitle>
-                  <CardDescription className="h-10">{tier.description}</CardDescription>
-                </CardHeader>
-                <CardContent className="flex-grow">
-                  <div className="mb-6">
-                    <span className="text-4xl font-bold text-foreground">
-                      {billingCycle === "monthly" ? tier.monthlyPrice : tier.lifetimePrice}
-                    </span>
-                    <span className="text-muted-foreground text-sm">
-                      {billingCycle === "monthly" ? tier.billing.monthly : tier.billing.lifetime}
-                    </span>
+                  <div>
+                    <h3 className="text-lg font-bold leading-tight">{product.name}</h3>
+                    <span className="text-xs text-muted-foreground font-medium uppercase tracking-wide">{product.label}</span>
                   </div>
-                  <ul className="space-y-3">
-                    {tier.features.map((feature, i) => (
-                      <li key={i} className="flex items-start gap-3 text-sm">
-                        <Check className="w-5 h-5 text-primary shrink-0" />
-                        <span className="text-muted-foreground">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-                <CardFooter>
-                  <Button
-                    className="w-full"
-                    variant={tier.popular ? "default" : "outline"}
-                    asChild
-                  >
-                    <Link href={`/checkout?plan=${encodeURIComponent(tier.name)}&price=${encodeURIComponent(billingCycle === "monthly" ? tier.monthlyPrice : tier.lifetimePrice)}&billing=${billingCycle}`}>
-                      Get {tier.name}
-                    </Link>
-                  </Button>
-                </CardFooter>
-              </Card>
+                </div>
+
+                {/* Price */}
+                <div className="mb-5">
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-5xl font-extrabold tracking-tight text-foreground">${product.price}</span>
+                    <span className="text-muted-foreground text-sm font-medium ml-1">USD</span>
+                  </div>
+                  <p className="text-muted-foreground text-sm mt-2 leading-relaxed">{product.description}</p>
+                </div>
+
+                {/* Features */}
+                <ul className="space-y-3 mb-8 flex-1">
+                  {product.features.map((feature, i) => (
+                    <li key={i} className="flex items-start gap-2.5 text-sm">
+                      <span className={`mt-0.5 flex-shrink-0 w-4 h-4 rounded-full flex items-center justify-center ${product.featured ? "bg-primary/20" : "bg-primary/10"}`}>
+                        <Check className="w-2.5 h-2.5 text-primary" />
+                      </span>
+                      <span className="text-muted-foreground">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* CTA */}
+                <Link
+                  href={`/checkout?plan=${encodeURIComponent(product.name)}&price=${product.price}`}
+                  className={`w-full flex items-center justify-center h-12 rounded-xl font-semibold text-sm transition-all duration-200 ${
+                    product.featured
+                      ? "bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25"
+                      : "border border-primary/40 text-foreground hover:bg-primary/10 hover:border-primary/60"
+                  }`}
+                >
+                  {product.cta} →
+                </Link>
+              </div>
             </motion.div>
           ))}
         </div>
 
-        <p className="text-center text-sm text-muted-foreground mt-10">
-          Payments processed securely by Paddle. Questions?{" "}
-          <a href="mailto:rameediscord@gmail.com" className="text-primary hover:underline">
-            Contact us
-          </a>
-        </p>
+        <div className="text-center mt-10 space-y-2">
+          <p className="text-sm text-muted-foreground">
+            All payments are one-time. No subscriptions. No recurring charges. Ever.
+          </p>
+          <p className="text-sm text-muted-foreground">
+            Questions?{" "}
+            <a href="mailto:rameediscord@gmail.com" className="text-primary hover:underline">
+              rameediscord@gmail.com
+            </a>
+          </p>
+        </div>
       </div>
     </section>
   );
