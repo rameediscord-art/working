@@ -34,10 +34,10 @@ export function Navbar() {
     >
       <div className="container mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group" data-testid="link-logo">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white font-bold text-xl shadow-[0_0_15px_rgba(124,58,237,0.5)] group-hover:shadow-[0_0_25px_rgba(124,58,237,0.7)] transition-all">
-            N
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white font-bold text-sm shadow-[0_0_15px_rgba(124,58,237,0.5)] group-hover:shadow-[0_0_25px_rgba(124,58,237,0.7)] transition-all">
+            R
           </div>
-          <span className="font-bold text-xl tracking-tight text-foreground">NexusHub</span>
+          <span className="font-bold text-xl tracking-tight text-foreground">Ramee Digital</span>
         </Link>
 
         {/* Desktop Nav */}
@@ -56,7 +56,7 @@ export function Navbar() {
 
         <div className="hidden md:flex items-center gap-4">
           <Button asChild data-testid="button-nav-cta">
-            <a href="#services">Get Started</a>
+            <a href="#pricing">Get Started</a>
           </Button>
         </div>
 
@@ -91,7 +91,7 @@ export function Navbar() {
                 </a>
               ))}
               <Button asChild className="w-full mt-4" onClick={() => setMobileMenuOpen(false)}>
-                <a href="#services">Get Started</a>
+                <a href="#pricing">Get Started</a>
               </Button>
             </div>
           </motion.div>

@@ -9,7 +9,7 @@ import { useState } from "react";
 const NAV_LINKS = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
   { href: "/orders", label: "Orders", icon: ShoppingCart },
-  { href: "/plans", label: "Plans", icon: LayoutList },
+  { href: "/plans", label: "Products", icon: LayoutList },
   { href: "/packs", label: "Packs", icon: Package },
   { href: "/settings", label: "Settings", icon: Settings },
   { href: "/audit-logs", label: "Audit Logs", icon: FileText },
@@ -47,10 +47,10 @@ export function AppLayout({ children, title }: { children: React.ReactNode; titl
       <aside className="hidden md:flex flex-col w-64 border-r border-sidebar-border bg-sidebar shrink-0">
         <div className="h-16 flex items-center px-6 border-b border-sidebar-border">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-xl">
-              N
+            <div className="w-8 h-8 rounded bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-sm">
+              R
             </div>
-            <span className="font-bold text-lg text-sidebar-foreground tracking-tight">NexusHub <span className="font-medium text-muted-foreground text-sm ml-1">Admin</span></span>
+            <span className="font-bold text-base text-sidebar-foreground tracking-tight">Ramee Digital <span className="font-medium text-muted-foreground text-xs ml-1">Admin</span></span>
           </div>
         </div>
         <nav className="flex-1 px-3 py-6 overflow-y-auto">
@@ -88,10 +88,10 @@ export function AppLayout({ children, title }: { children: React.ReactNode; titl
                 <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                 <div className="h-16 flex items-center px-6 border-b border-sidebar-border">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-xl">
-                      N
+                    <div className="w-8 h-8 rounded bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-sm">
+                      R
                     </div>
-                    <span className="font-bold text-lg text-sidebar-foreground">NexusHub</span>
+                    <span className="font-bold text-base text-sidebar-foreground">Ramee Digital</span>
                   </div>
                 </div>
                 <nav className="p-4">

@@ -8,13 +8,13 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div className="md:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4 group inline-flex">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white font-bold text-xl">
-                N
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white font-bold text-sm">
+                R
               </div>
-              <span className="font-bold text-xl tracking-tight text-foreground">NexusHub</span>
+              <span className="font-bold text-xl tracking-tight text-foreground">Ramee Digital</span>
             </Link>
             <p className="text-sm text-muted-foreground mb-6">
-              Premium digital services, tools, and memberships delivered instantly. Level up your digital journey today.
+              Premium digital services delivered with one-time payments. Discord access, live sessions, and full bundles — no subscriptions, ever.
             </p>
             <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
               <ShieldCheck className="w-4 h-4 text-emerald-400" />
@@ -23,12 +23,11 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-foreground mb-4">Services</h3>
+            <h3 className="font-semibold text-foreground mb-4">Products</h3>
             <ul className="space-y-3">
-              <li><a href="#services" className="text-sm text-muted-foreground hover:text-primary transition-colors">VIP Memberships</a></li>
-              <li><a href="#services" className="text-sm text-muted-foreground hover:text-primary transition-colors">Premium Tools</a></li>
-              <li><a href="#services" className="text-sm text-muted-foreground hover:text-primary transition-colors">Gaming Coaching</a></li>
-              <li><a href="#services" className="text-sm text-muted-foreground hover:text-primary transition-colors">Marketplace Tools</a></li>
+              <li><Link href="/checkout?plan=Discord+Access&price=14" className="text-sm text-muted-foreground hover:text-primary transition-colors">Discord Access — $14</Link></li>
+              <li><Link href="/checkout?plan=Live+1-on-1+Session&price=60" className="text-sm text-muted-foreground hover:text-primary transition-colors">Live 1-on-1 Session — $60</Link></li>
+              <li><Link href="/checkout?plan=Full+Bundle&price=120" className="text-sm text-muted-foreground hover:text-primary transition-colors">Full Bundle — $120</Link></li>
             </ul>
           </div>
 
@@ -55,7 +54,7 @@ export function Footer() {
 
         <div className="pt-8 border-t border-border/30 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} NexusHub. All rights reserved.
+            © {new Date().getFullYear()} Ramee Digital Services. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
             <Link href="/privacy" className="text-xs text-muted-foreground hover:text-primary transition-colors">Privacy</Link>

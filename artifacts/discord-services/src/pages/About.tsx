@@ -13,7 +13,7 @@ const values = [
   {
     icon: <Zap className="w-6 h-6 text-secondary" />,
     title: "Fast Delivery",
-    description: "Digital plans and tools activated within 24 hours of purchase — no delays.",
+    description: "Discord access and session scheduling handled within a few hours of purchase — no delays.",
   },
   {
     icon: <Users className="w-6 h-6 text-emerald-400" />,
@@ -42,13 +42,13 @@ export function About() {
           >
             <div className="inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-sm font-medium text-primary mb-6">
               <span className="flex h-2 w-2 rounded-full bg-primary mr-2 animate-pulse" />
-              About NexusHub
+              About Ramee Digital Services
             </div>
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
               Who We Are
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              NexusHub is a premium digital services platform specialising in memberships, automation tools, coaching, and marketplace services for digital entrepreneurs and enthusiasts.
+              Ramee Digital Services offers exclusive digital products — private Discord access, live one-on-one sessions, and full bundles — all as simple, one-time purchases with no subscriptions.
             </p>
           </motion.div>
 
@@ -62,13 +62,13 @@ export function About() {
               <h2 className="text-2xl font-bold mb-4">What We Do</h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  We build and operate a curated marketplace of premium digital services. Our platform gives customers instant access to exclusive memberships, professional coaching, advanced automation tools, and digital downloads — all delivered through a simple, secure checkout process.
+                  We offer three focused digital products: permanent Discord server access, private live sessions, and a full bundle that includes everything. Every purchase is a one-time payment — no subscriptions, no recurring charges, no renewals.
                 </p>
                 <p>
-                  Every service we offer is carefully vetted and clearly described. We believe customers deserve to know exactly what they are purchasing before they pay — no vague promises, no surprise charges.
+                  Every product is clearly described before you buy. We believe customers deserve to know exactly what they are purchasing — no vague promises, no surprise charges.
                 </p>
                 <p>
-                  Payments are processed securely through Paddle, a globally trusted payment processor. After every purchase, you receive an Order ID by email that you can use to track your order or contact our support team.
+                  After every purchase, you receive an Order ID by email. Our team will contact you to deliver your product — usually within a few hours of your order being placed.
                 </p>
               </div>
             </motion.div>
@@ -82,10 +82,10 @@ export function About() {
               <h2 className="text-2xl font-bold mb-4">Who We Serve</h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  NexusHub serves digital entrepreneurs, gaming enthusiasts, online community managers, and anyone looking to access premium tools and services that help them grow, automate, and perform at a higher level.
+                  We serve anyone looking for exclusive community access, personalised coaching, or a complete bundle of digital services — delivered simply and without unnecessary complexity.
                 </p>
                 <p>
-                  Whether you are looking for a VIP membership with exclusive features, a one-on-one coaching session to improve your skills, or powerful automation tools to streamline your workflow — NexusHub has a plan built for you.
+                  Whether you want permanent access to our private Discord server, a dedicated two-hour live session tailored to your goals, or the full bundle that covers everything — there is a product for you.
                 </p>
                 <p>
                   We serve thousands of customers and are committed to delivering quality, reliability, and responsive support every step of the way.
@@ -126,7 +126,7 @@ export function About() {
           >
             <h2 className="text-2xl font-bold mb-4">Get in Touch</h2>
             <p className="text-muted-foreground mb-6">
-              Questions about our services or want to learn more? We're happy to help.
+              Questions about our products or want to learn more? We're happy to help.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a

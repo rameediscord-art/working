@@ -16,23 +16,23 @@ export function Hero() {
         >
           <div className="inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-sm font-medium text-primary mb-8">
             <span className="flex h-2 w-2 rounded-full bg-primary mr-2 animate-pulse" />
-            NexusHub v2.0 is Live
+            One-Time Payments. No Subscriptions. Ever.
           </div>
 
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-white/60">
-            Premium Digital Services & Memberships
+            Exclusive Digital Services — Pay Once, Keep Forever
           </h1>
 
           <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
-            Purchase premium digital services, tools, memberships, and exclusive community access instantly through our secure platform.
+            Get permanent Discord access, private live sessions, and full resource bundles. One-time payment. No renewals. No surprises.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
             <a
-              href="#services"
+              href="#pricing"
               className="inline-flex h-12 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring w-full sm:w-auto"
             >
-              Browse Services
+              See Pricing
             </a>
             <Link
               href="/checkout"

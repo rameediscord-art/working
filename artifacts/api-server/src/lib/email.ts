@@ -26,12 +26,12 @@ export async function sendPasswordResetEmail(toEmail: string, resetToken: string
   }
 
   await transporter.sendMail({
-    from: `"NexusHub Admin" <${GMAIL_USER}>`,
+    from: `"Ramee Digital Admin" <${GMAIL_USER}>`,
     to: toEmail,
-    subject: "Password Reset Request — NexusHub Admin",
+    subject: "Password Reset Request — Ramee Digital Admin",
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-        <h2 style="color: #7c3aed;">NexusHub Admin — Password Reset</h2>
+        <h2 style="color: #7c3aed;">Ramee Digital Admin — Password Reset</h2>
         <p>You requested a password reset for your admin account.</p>
         <p>Click the button below to set a new password. This link expires in <strong>15 minutes</strong>.</p>
         <div style="text-align: center; margin: 32px 0;">
@@ -62,7 +62,7 @@ export async function sendOrderConfirmationEmail(order: {
   }
 
   await transporter.sendMail({
-    from: `"NexusHub" <${GMAIL_USER}>`,
+    from: `"Ramee Digital Services" <${GMAIL_USER}>`,
     to: order.customerEmail,
     subject: `Order Confirmation — ${order.orderId}`,
     html: `
@@ -119,7 +119,7 @@ export async function sendContactEmail(data: {
   }
 
   await transporter.sendMail({
-    from: `"NexusHub Contact Form" <${GMAIL_USER}>`,
+    from: `"Ramee Digital Services Contact Form" <${GMAIL_USER}>`,
     to: GMAIL_USER,
     replyTo: data.email,
     subject: `[Contact Form] ${data.subject ?? "New Message"} — from ${data.name}`,

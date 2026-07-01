@@ -88,10 +88,10 @@ export default function Login() {
       <Card className="w-full max-w-md bg-card/60 backdrop-blur-xl border-white/10 shadow-2xl relative z-10">
         <CardHeader className="space-y-3 pb-6 text-center">
           <div className="mx-auto w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg shadow-primary/20">
-            <span className="text-white font-bold text-2xl">N</span>
+            <span className="text-white font-bold text-2xl">R</span>
           </div>
           <div className="space-y-1">
-            <CardTitle className="text-2xl font-bold tracking-tight">NexusHub</CardTitle>
+            <CardTitle className="text-2xl font-bold tracking-tight">Ramee Digital</CardTitle>
             <CardDescription className="text-sm font-medium">
               {mode === "login" && "Admin Portal"}
               {mode === "forgot" && "Reset Password"}
