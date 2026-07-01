@@ -2,101 +2,112 @@ import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Button } from "@/components/ui/button";
 
 export function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const navLinks = [
-    { name: "Services", href: "/#services" },
-    { name: "Pricing", href: "/#pricing" },
-    { name: "How It Works", href: "/#how-it-works" },
-    { name: "FAQ", href: "/#faq" },
-    { name: "Contact", href: "/#contact" },
+  const links = [
+    { label: "Home", href: "/" },
+    { label: "Pricing", href: "#pricing" },
+    { label: "Contact", href: "#contact" },
   ];
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
-        isScrolled
-          ? "bg-background/80 backdrop-blur-md border-border/50 shadow-sm"
-          : "bg-transparent border-transparent"
-      }`}
-    >
-      <div className="container mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 group" data-testid="link-logo">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white font-bold text-sm shadow-[0_0_15px_rgba(124,58,237,0.5)] group-hover:shadow-[0_0_25px_rgba(124,58,237,0.7)] transition-all">
-            R
-          </div>
-          <span className="font-bold text-xl tracking-tight text-foreground">Ramee Digital</span>
-        </Link>
-
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-              data-testid={`link-nav-${link.name.toLowerCase().replace(/\s+/g, "-")}`}
-            >
-              {link.name}
-            </a>
-          ))}
-        </nav>
-
-        <div className="hidden md:flex items-center gap-4">
-          <Button asChild data-testid="button-nav-cta">
-            <a href="#pricing">Get Started</a>
-          </Button>
-        </div>
-
-        {/* Mobile Menu Toggle */}
-        <button
-          className="md:hidden p-2 text-foreground"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          data-testid="button-mobile-menu"
-        >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-
-      {/* Mobile Nav */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-b border-border/50 bg-background/95 backdrop-blur-xl overflow-hidden"
-          >
-            <div className="px-4 py-6 flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="text-lg font-medium text-foreground py-2 border-b border-border/20"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {link.name}
-                </a>
-              ))}
-              <Button asChild className="w-full mt-4" onClick={() => setMobileMenuOpen(false)}>
-                <a href="#pricing">Get Started</a>
-              </Button>
+    <>
+      <header
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 100,
+          height: 60,
+          display: "flex",
+          alignItems: "center",
+          background: scrolled ? "#13131A" : "transparent",
+          borderBottom: scrolled ? "1px solid #2A2A3A" : "1px solid transparent",
+          transition: "background 0.3s, border-color 0.3s",
+        }}
+      >
+        <div style={{ maxWidth: 1200, margin: "0 auto", width: "100%", padding: "0 20px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <Link href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
+            <div style={{ width: 32, height: 32, borderRadius: 8, background: "linear-gradient(135deg, #7C5CFC, #9D7BFF)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "Outfit, sans-serif", fontWeight: 800, fontSize: 16, color: "#fff" }}>
+              R
             </div>
+            <span style={{ fontFamily: "Outfit, sans-serif", fontWeight: 700, fontSize: 18, color: "#fff" }}>Ramee Digital</span>
+          </Link>
+
+          {/* Desktop links */}
+          <nav style={{ display: "flex", gap: 32 }} className="hidden md:flex">
+            {links.map((l) => (
+              <a key={l.label} href={l.href} style={{ fontFamily: "Inter, sans-serif", fontSize: 14, fontWeight: 500, color: "#9A9AAF", textDecoration: "none", transition: "color 0.2s" }}
+                onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
+                onMouseLeave={e => (e.currentTarget.style.color = "#9A9AAF")}
+              >
+                {l.label}
+              </a>
+            ))}
+          </nav>
+
+          <a
+            href="#pricing"
+            className="hidden md:inline-flex"
+            style={{ fontFamily: "Inter, sans-serif", fontSize: 13, fontWeight: 600, color: "#fff", background: "#7C5CFC", padding: "8px 20px", borderRadius: 8, textDecoration: "none", transition: "background 0.2s" }}
+            onMouseEnter={e => (e.currentTarget.style.background = "#6344E0")}
+            onMouseLeave={e => (e.currentTarget.style.background = "#7C5CFC")}
+          >
+            Get Started
+          </a>
+
+          {/* Mobile hamburger */}
+          <button
+            className="md:hidden"
+            onClick={() => setOpen(!open)}
+            style={{ background: "none", border: "none", color: "#fff", cursor: "pointer", padding: 4 }}
+            aria-label="Toggle menu"
+          >
+            {open ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+      </header>
+
+      {/* Mobile full-screen overlay */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+            style={{ position: "fixed", inset: 0, zIndex: 99, background: "#0A0A0F", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 32 }}
+          >
+            {links.map((l) => (
+              <a
+                key={l.label}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                style={{ fontFamily: "Outfit, sans-serif", fontSize: 28, fontWeight: 700, color: "#fff", textDecoration: "none" }}
+              >
+                {l.label}
+              </a>
+            ))}
+            <a
+              href="#pricing"
+              onClick={() => setOpen(false)}
+              style={{ fontFamily: "Inter, sans-serif", fontSize: 16, fontWeight: 600, color: "#fff", background: "#7C5CFC", padding: "14px 40px", borderRadius: 10, textDecoration: "none", marginTop: 8 }}
+            >
+              Get Started
+            </a>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }

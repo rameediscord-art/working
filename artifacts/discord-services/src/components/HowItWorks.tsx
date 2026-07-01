@@ -1,69 +1,88 @@
 import { motion } from "framer-motion";
-import { Search, ShoppingCart, Mail, Key } from "lucide-react";
 
 const steps = [
   {
-    number: "01",
-    title: "Choose Your Service",
-    description: "Browse our catalog and select the perfect plan or tool for your needs.",
-    icon: <Search className="w-6 h-6 text-primary" />,
+    number: "1",
+    title: "Choose your product",
+    description: "Pick from Discord Access, a Live Session, or the Full Bundle — all one-time payments.",
   },
   {
-    number: "02",
-    title: "Secure Checkout",
-    description: "Complete the checkout form with your name, email, and plan selection.",
-    icon: <ShoppingCart className="w-6 h-6 text-secondary" />,
+    number: "2",
+    title: "Complete your purchase",
+    description: "Enter your name and email, then submit. No card stored, no accounts required.",
   },
   {
-    number: "03",
-    title: "Get Your Order ID",
-    description: "Receive your unique Order ID by email along with your purchase confirmation.",
-    icon: <Mail className="w-6 h-6 text-emerald-400" />,
-  },
-  {
-    number: "04",
-    title: "Instant Access",
-    description: "Your plan is activated within 24 hours. All access details are sent by email.",
-    icon: <Key className="w-6 h-6 text-blue-400" />,
+    number: "3",
+    title: "Get instant access",
+    description: "You receive an Order ID by email. We deliver your product within a few hours.",
   },
 ];
 
 export function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-24 bg-background/80 relative z-10 overflow-hidden">
-      <div className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent hidden lg:block -z-10" />
-
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">How It Works</h2>
-          <p className="text-lg text-muted-foreground">
-            Get access to your premium services in four simple steps.
+    <section
+      id="how-it-works"
+      style={{ background: "#0A0A0F", padding: "80px 20px", borderTop: "1px solid #2A2A3A" }}
+    >
+      <div style={{ maxWidth: 1080, margin: "0 auto" }}>
+        <div style={{ textAlign: "center", marginBottom: 56 }}>
+          <h2 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 700, fontSize: "clamp(26px, 4vw, 38px)", color: "#fff", margin: "0 0 12px" }}>
+            How It Works
+          </h2>
+          <p style={{ fontFamily: "Inter, sans-serif", fontSize: 16, color: "#9A9AAF", margin: 0 }}>
+            Three steps. Done in minutes.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {steps.map((step, index) => (
+        <div
+          style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24, alignItems: "start" }}
+          className="how-grid"
+        >
+          {steps.map((step, i) => (
             <motion.div
-              key={index}
+              key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
-              className="relative"
+              transition={{ duration: 0.5, delay: i * 0.12 }}
+              style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 16 }}
             >
-              <div className="bg-card/60 backdrop-blur-md border border-border/50 rounded-2xl p-6 h-full text-center hover:border-primary/50 transition-colors group">
-                <div className="w-16 h-16 mx-auto bg-background/80 border border-border rounded-2xl flex items-center justify-center mb-6 relative group-hover:scale-110 transition-transform">
-                  <div className="absolute -inset-2 bg-gradient-to-tr from-primary/20 to-secondary/20 rounded-3xl blur-md opacity-0 group-hover:opacity-100 transition-opacity" />
-                  {step.icon}
-                </div>
-                <div className="text-sm font-bold text-primary mb-2 tracking-widest">{step.number}</div>
-                <h3 className="text-xl font-semibold mb-3">{step.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{step.description}</p>
+              <div
+                style={{
+                  width: 44,
+                  height: 44,
+                  borderRadius: "50%",
+                  background: "#7C5CFC",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontFamily: "Outfit, sans-serif",
+                  fontWeight: 800,
+                  fontSize: 18,
+                  color: "#fff",
+                  flexShrink: 0,
+                }}
+              >
+                {step.number}
+              </div>
+              <div>
+                <h3 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 700, fontSize: 18, color: "#fff", margin: "0 0 8px" }}>
+                  {step.title}
+                </h3>
+                <p style={{ fontFamily: "Inter, sans-serif", fontSize: 14, color: "#9A9AAF", margin: 0, lineHeight: 1.7 }}>
+                  {step.description}
+                </p>
               </div>
             </motion.div>
           ))}
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 767px) {
+          .how-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
+        }
+      `}</style>
     </section>
   );
 }

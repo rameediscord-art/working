@@ -1,131 +1,99 @@
 import { motion } from "framer-motion";
-import { Check, Zap, Users, Star } from "lucide-react";
-import { Link } from "wouter";
 
-const services = [
+function DiscordIcon() {
+  return (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h14l2 3V6a2 2 0 00-2-2z" stroke="#7C5CFC" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+      <circle cx="9" cy="12" r="1.2" fill="#7C5CFC"/>
+      <circle cx="15" cy="12" r="1.2" fill="#7C5CFC"/>
+    </svg>
+  );
+}
+
+function SessionIcon() {
+  return (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="8" r="4" stroke="#7C5CFC" strokeWidth="1.8"/>
+      <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#7C5CFC" strokeWidth="1.8" strokeLinecap="round"/>
+    </svg>
+  );
+}
+
+function BundleIcon() {
+  return (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="#7C5CFC" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
+}
+
+const items = [
   {
-    id: "discord-access",
-    title: "Discord Access",
-    description: "Join the private community permanently. One payment, lifetime access.",
-    price: "$14",
-    label: "One-Time",
-    icon: <Users className="w-6 h-6 text-primary" />,
-    features: [
-      "Permanent Discord server access",
-      "Private members-only channels",
-      "Exclusive resources & updates",
-      "No expiry, no renewal",
-    ],
-    badge: null,
-    href: "/checkout?plan=Discord+Access&price=14",
+    icon: <DiscordIcon />,
+    name: "Discord Access",
+    desc: "Permanent entry to the private server. Pay once, stay in forever. No link expiry, no re-purchases.",
   },
   {
-    id: "live-session",
-    title: "Live 1-on-1 Session",
-    description: "A 2-hour private session, scheduled directly after purchase.",
-    price: "$60",
-    label: "One-Time",
-    icon: <Zap className="w-6 h-6 text-secondary" />,
-    features: [
-      "2-hour private live session",
-      "Fully personalised to your goals",
-      "Scheduled via email after purchase",
-      "No subscription required",
-    ],
-    badge: null,
-    href: "/checkout?plan=Live+1-on-1+Session&price=60",
+    icon: <SessionIcon />,
+    name: "Live 1-on-1 Session",
+    desc: "Two hours of focused, private live coaching scheduled directly after your purchase via email.",
   },
   {
-    id: "full-bundle",
-    title: "Full Bundle",
-    description: "Everything included — Discord, a live session, and full resources for 30 days.",
-    price: "$120",
-    label: "One-Time",
-    icon: <Star className="w-6 h-6 text-yellow-400" />,
-    features: [
-      "Permanent Discord server access",
-      "1× private live session (2 hours)",
-      "Full resource library (30 days)",
-      "Discord invite + session booking by email",
-    ],
-    badge: "Best Value",
-    href: "/checkout?plan=Full+Bundle&price=120",
+    icon: <BundleIcon />,
+    name: "Full Bundle",
+    desc: "Everything included — permanent Discord access, a live session, and full resource library for 30 days.",
   },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
-
 export function Services() {
   return (
-    <section id="services" className="py-24 bg-background relative z-10">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">What We Offer</h2>
-          <p className="text-lg text-muted-foreground">
-            Three straightforward products. Pay once — get exactly what's listed, with no hidden charges.
+    <section
+      id="services"
+      style={{ background: "#0A0A0F", padding: "80px 20px" }}
+    >
+      <div style={{ maxWidth: 1080, margin: "0 auto" }}>
+        <div style={{ textAlign: "center", marginBottom: 56 }}>
+          <h2 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 700, fontSize: "clamp(26px, 4vw, 38px)", color: "#fff", margin: "0 0 12px" }}>
+            What You Get
+          </h2>
+          <p style={{ fontFamily: "Inter, sans-serif", fontSize: 16, color: "#9A9AAF", margin: 0, maxWidth: 480, marginLeft: "auto", marginRight: "auto" }}>
+            Three products. Everything clearly described. No fluff.
           </p>
         </div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto"
+        <div
+          style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}
+          className="what-you-get-grid"
         >
-          {services.map((service) => (
-            <motion.div key={service.id} variants={itemVariants}>
-              <div className="h-full bg-card/40 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all duration-300 relative group overflow-hidden flex flex-col rounded-2xl">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-                {service.badge && (
-                  <div className="absolute top-4 right-4 bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                    {service.badge}
-                  </div>
-                )}
-
-                <div className="p-6 flex flex-col flex-1">
-                  <div className="w-12 h-12 rounded-xl bg-background/50 flex items-center justify-center border border-border/50 mb-4 shadow-sm">
-                    {service.icon}
-                  </div>
-
-                  <h3 className="text-xl font-bold mb-1">{service.title}</h3>
-                  <p className="text-muted-foreground text-sm mb-4">{service.description}</p>
-
-                  <div className="flex items-baseline gap-2 mb-5">
-                    <span className="text-3xl font-extrabold text-foreground">{service.price}</span>
-                    <span className="text-xs font-semibold uppercase tracking-wide text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded-full border border-emerald-500/20">{service.label}</span>
-                  </div>
-
-                  <ul className="space-y-2.5 flex-1 mb-6">
-                    {service.features.map((feature, i) => (
-                      <li key={i} className="flex items-start gap-2.5 text-sm text-muted-foreground">
-                        <Check className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <Link
-                    href={service.href}
-                    className="w-full flex items-center justify-center h-11 rounded-xl border border-primary/40 text-foreground text-sm font-semibold hover:bg-primary/10 hover:border-primary/60 transition-all duration-200"
-                  >
-                    Get Started →
-                  </Link>
-                </div>
+          {items.map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              style={{
+                background: "#13131A",
+                border: "1px solid #2A2A3A",
+                borderRadius: 16,
+                padding: 28,
+              }}
+            >
+              <div style={{ marginBottom: 20, width: 52, height: 52, background: "rgba(124,92,252,0.1)", borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                {item.icon}
               </div>
+              <h3 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 700, fontSize: 18, color: "#fff", margin: "0 0 10px" }}>{item.name}</h3>
+              <p style={{ fontFamily: "Inter, sans-serif", fontSize: 14, color: "#9A9AAF", margin: 0, lineHeight: 1.7 }}>{item.desc}</p>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
+
+      <style>{`
+        @media (max-width: 767px) {
+          .what-you-get-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </section>
   );
 }

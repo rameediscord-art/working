@@ -1,0 +1,142 @@
+Here is the full updated prompt — paste this into Replit AI:
+
+---
+
+**PROMPT:**
+
+> You are redesigning the homepage as a senior UX/UI and graphic design expert. The single goal of this page is: **when a user lands on the site, the very first thing they see — without scrolling — are the 3 products with their prices and a Buy Now button.** Everything else is secondary.
+>
+> Build both desktop and mobile versions simultaneously. Every element described below must work perfectly on both screen sizes.
+>
+> ---
+>
+> **DESKTOP — ABOVE THE FOLD (1080p and 1440p screens):**
+>
+> - Dark premium background — `#0A0A0F` full page
+> - Centered short headline — maximum 6 words — font size 52px, bold, white, letter spacing tight
+> - One line subheadline below — font size 18px, muted grey `#9A9AAF`, centered
+> - Immediately below — 3 product cards in a single row, horizontally centered
+> - Cards must be fully visible without ANY scrolling on 1080p
+> - Equal spacing between cards — 24px gap
+> - Page has no heavy images, no hero banner, nothing above the cards except the headline and subheadline
+>
+> ---
+>
+> **MOBILE — ABOVE THE FOLD (375px to 430px width — iPhone and Android):**
+>
+> - Same dark background `#0A0A0F`
+> - Headline font size reduces to 28px — bold, centered, white — must not overflow or wrap awkwardly — maximum 2 lines
+> - Subheadline font size 14px — centered, muted grey — maximum 2 lines
+> - Cards stack vertically — one card per row — full width with 16px padding on left and right
+> - **Full Bundle card appears FIRST on mobile** — best value shown at top
+> - Live Session card second
+> - Discord Access card third
+> - Each card on mobile must show completely without horizontal scrolling
+> - Buy Now button is full width on mobile — 48px height minimum for easy tapping
+> - No pinch-to-zoom required anywhere
+> - Text never clips, overflows, or gets cut off on any mobile screen size
+>
+> ---
+>
+> **PRODUCT CARD DESIGN — desktop and mobile:**
+>
+> - Card background: `#13131A`
+> - Border: 1px solid with subtle glow — `#7C5CFC` for normal cards
+> - Border radius: 16px
+> - Padding inside card: 28px desktop, 20px mobile
+> - Product name: bold, white, 20px desktop / 18px mobile — top of card
+> - Price: extra bold, white, 42px desktop / 36px mobile — largest text on card
+> - "One-Time Payment" label: 12px, muted grey `#9A9AAF`, below price
+> - Thin divider line: `#2A2A3A` — separates price from features list
+> - Feature bullets: checkmark icon in accent color `#7C5CFC`, white text, 14px, 4 bullets max
+> - Buy Now button: full width, background `#7C5CFC`, white bold text, 14px, border radius 10px, 48px height, hover darkens to `#6344E0`
+>
+> ---
+>
+> **FULL BUNDLE CARD — elevated treatment on both desktop and mobile:**
+>
+> - Border color: `#7C5CFC` with a glowing box shadow — `box-shadow: 0 0 24px rgba(124, 92, 252, 0.4)`
+> - Background: subtle gradient — `linear-gradient(145deg, #13131A, #1A1428)`
+> - "Best Value" badge: top right corner — pill shape, background `#7C5CFC`, white text, 11px bold, padding 4px 10px
+> - On mobile: this card has 2px border instead of 1px to make it more prominent when stacked
+>
+> ---
+>
+> **TYPOGRAPHY — both desktop and mobile:**
+>
+> - Import from Google Fonts: **Outfit** for headlines and prices, **Inter** for body and card text
+> - All font weights used: 400 regular, 600 semibold, 700 bold, 800 extrabold
+> - Price uses 800 extrabold always
+> - Headline uses 700 bold always
+> - No decorative fonts anywhere
+>
+> ---
+>
+> **NAVIGATION BAR — desktop and mobile:**
+>
+> - Desktop: slim top bar — logo/site name on left, nav links on right (Home, Pricing, Contact) — background transparent over dark page, becomes `#13131A` on scroll
+> - Mobile: hamburger menu icon top right — tapping opens a full screen dark overlay menu with links centered vertically — smooth slide down animation
+> - Nav must never overlap or cover the cards
+> - No sticky nav that takes up too much space on mobile
+>
+> ---
+>
+> **BELOW THE FOLD — desktop and mobile both:**
+>
+> Section 1 — What You Get:
+> - 3 columns on desktop, stacked on mobile
+> - One icon, one product name, one short paragraph per column
+> - Icon size 32px desktop, 28px mobile
+>
+> Section 2 — How It Works:
+> - 3 steps horizontal on desktop, vertical on mobile
+> - Step 1: Choose your plan — Step 2: Complete your purchase — Step 3: Get instant access
+> - Number badge next to each step — accent color circle with white number
+>
+> Section 3 — FAQ:
+> - Accordion style — tap to expand answer
+> - Works perfectly on mobile with full width accordion items
+> - Minimum 5 questions:
+>   - What do I get with Discord Access?
+>   - How do I schedule my Live Session after purchase?
+>   - What is included in the Full Bundle?
+>   - Do you offer refunds?
+>   - How will I receive my access after payment?
+>
+> Section 4 — Final CTA Banner:
+> - Dark banner with subtle gradient background
+> - One headline, one Get Started button that scrolls to top cards
+> - Button full width on mobile
+>
+> Footer:
+> - Links: Privacy Policy, Refund Policy, Terms of Service, Cookie Policy, Contact
+> - On mobile: links stack in 2 columns, centered
+> - Copyright line at very bottom
+> - Cookie consent bar: slim fixed bar at bottom of screen — never overlaps cards or content — has Accept button — disappears after accepting
+>
+> ---
+>
+> **PERFORMANCE RULES:**
+>
+> - No images above the fold — use CSS and icons only
+> - Use SVG icons not image files for checkmarks and step icons
+> - Lazy load everything below the fold
+> - Page must score above 90 on Google PageSpeed mobile test
+> - No layout shift when page loads — set explicit widths and heights on all elements
+>
+> ---
+>
+> **WHAT TO REMOVE COMPLETELY:**
+>
+> - No testimonials section
+> - No blog section
+> - No team photos or stock images
+> - No countdown timers or fake urgency
+> - No chat widget or popup that appears on load
+> - No horizontal scrolling on mobile anywhere
+> - No elements that require pinch to zoom on mobile
+> - No subscription or monthly billing language anywhere
+
+---
+
+Want me to now write the **exact CSS variables and spacing system** as a separate prompt so Replit builds it pixel-perfect on both screens?

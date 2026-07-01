@@ -1,72 +1,104 @@
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 
 const faqs = [
   {
-    question: "Is this really a one-time payment?",
-    answer: "Yes, completely. Every product on this site is a single one-time payment. There are no subscriptions, no recurring charges, and no renewals. You pay once and that's it — your access never expires unless stated otherwise.",
+    question: "What do I get with Discord Access?",
+    answer: "You get permanent access to our private Discord server — including all members-only channels, resources, and updates. This is a one-time payment. There is no expiry date and you will never be asked to pay again.",
   },
   {
-    question: "What happens after I place my order?",
-    answer: "After submitting the checkout form, you will receive a confirmation email with your unique Order ID (format: ORD-YYYYMMDD-XXXXX). Our team will then contact you at your email address to deliver your purchase — usually within a few hours.",
+    question: "How do I schedule my Live Session after purchase?",
+    answer: "After your order is confirmed you will receive an email from us. We will reach out to you at the email address you provided at checkout to schedule the 2-hour session at a time that works for you.",
   },
   {
-    question: "How do I get my Discord access?",
-    answer: "After your order is confirmed, we will send you a Discord invite link directly to your email. Permanent access means you will not need to pay again — the invite is yours to keep.",
+    question: "What is included in the Full Bundle?",
+    answer: "The Full Bundle includes everything: permanent Discord server access, one 2-hour private live session, and full access to all resources and materials for 30 days. It is the best-value option and covers everything we offer in a single one-time payment.",
   },
   {
-    question: "How is the Live 1-on-1 Session scheduled?",
-    answer: "After your order is confirmed, we will reach out to your email to schedule the session at a time that works for you. The session lasts 2 hours and is entirely private and personalised to your goals.",
+    question: "Do you offer refunds?",
+    answer: "Yes. We offer a 7-day refund window from your purchase date. To request a refund, email rameediscord@gmail.com with your Order ID. Please review our Refund Policy page for the full terms.",
   },
   {
-    question: "What does the Full Bundle include?",
-    answer: "The Full Bundle gives you everything: permanent Discord server access, one 2-hour private live session, and full access to all resources and materials for 30 days. It is the best-value option and covers everything we offer.",
-  },
-  {
-    question: "What payment methods are accepted?",
-    answer: "We process all payments securely. We accept all major credit and debit cards including Visa, Mastercard, and American Express, as well as other popular payment methods depending on your region.",
-  },
-  {
-    question: "Can I request a refund?",
-    answer: "Yes. We offer a 7-day refund window from the date of purchase. To request a refund, email rameediscord@gmail.com with your Order ID and the reason for your request. Please review our full Refund Policy for the complete terms.",
-  },
-  {
-    question: "Are my payment details secure?",
-    answer: "Yes. We do not store or process your card information on our servers. All transactions go through a secure, PCI-compliant payment processor. Your data is encrypted throughout the entire checkout process.",
+    question: "How will I receive my access after payment?",
+    answer: "Immediately after placing your order you will receive a confirmation email containing your unique Order ID. Our team will then contact you within a few hours to deliver your product — whether that is a Discord invite link, a session scheduling message, or both.",
   },
 ];
 
 export function FAQ() {
-  return (
-    <section id="faq" className="py-24 bg-background relative z-10">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">Frequently Asked Questions</h2>
-            <p className="text-lg text-muted-foreground">
-              Everything you need to know before purchasing.
-            </p>
-          </div>
+  const [open, setOpen] = useState<number | null>(null);
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <Accordion type="single" collapsible className="w-full">
-              {faqs.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`} className="border-border/50">
-                  <AccordionTrigger className="text-left text-base font-medium hover:text-primary transition-colors">
+  return (
+    <section
+      id="faq"
+      style={{ background: "#0A0A0F", padding: "80px 20px", borderTop: "1px solid #2A2A3A" }}
+    >
+      <div style={{ maxWidth: 720, margin: "0 auto" }}>
+        <div style={{ textAlign: "center", marginBottom: 52 }}>
+          <h2 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 700, fontSize: "clamp(26px, 4vw, 38px)", color: "#fff", margin: "0 0 12px" }}>
+            Frequently Asked Questions
+          </h2>
+          <p style={{ fontFamily: "Inter, sans-serif", fontSize: 16, color: "#9A9AAF", margin: 0 }}>
+            Everything you need to know before buying.
+          </p>
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+          {faqs.map((faq, i) => {
+            const isOpen = open === i;
+            return (
+              <div
+                key={i}
+                style={{
+                  background: "#13131A",
+                  border: `1px solid ${isOpen ? "#7C5CFC" : "#2A2A3A"}`,
+                  borderRadius: 12,
+                  overflow: "hidden",
+                  transition: "border-color 0.2s",
+                }}
+              >
+                <button
+                  onClick={() => setOpen(isOpen ? null : i)}
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    padding: "18px 20px",
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                    textAlign: "left",
+                    gap: 12,
+                  }}
+                  aria-expanded={isOpen}
+                >
+                  <span style={{ fontFamily: "Inter, sans-serif", fontWeight: 600, fontSize: 15, color: "#fff", lineHeight: 1.4 }}>
                     {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground text-base leading-relaxed">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </motion.div>
+                  </span>
+                  <ChevronDown
+                    size={18}
+                    style={{ color: "#7C5CFC", flexShrink: 0, transform: isOpen ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.2s" }}
+                  />
+                </button>
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.22, ease: "easeInOut" }}
+                      style={{ overflow: "hidden" }}
+                    >
+                      <p style={{ fontFamily: "Inter, sans-serif", fontSize: 14, color: "#9A9AAF", padding: "0 20px 20px", margin: 0, lineHeight: 1.75 }}>
+                        {faq.answer}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

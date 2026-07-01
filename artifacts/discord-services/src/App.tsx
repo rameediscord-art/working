@@ -6,12 +6,10 @@ import NotFound from "@/pages/not-found";
 
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
-import { SocialProof } from "@/components/SocialProof";
 import { Services } from "@/components/Services";
 import { HowItWorks } from "@/components/HowItWorks";
-import { Pricing } from "@/components/Pricing";
-import { Testimonials } from "@/components/Testimonials";
 import { FAQ } from "@/components/FAQ";
+import { CTABanner } from "@/components/CTABanner";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { CookieNotice } from "@/components/CookieNotice";
@@ -29,16 +27,14 @@ const queryClient = new QueryClient();
 
 function Home() {
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col">
+    <div style={{ minHeight: "100vh", background: "#0A0A0F" }}>
       <Navbar />
-      <main className="flex-1">
+      <main>
         <Hero />
-        <SocialProof />
         <Services />
         <HowItWorks />
-        <Pricing />
-        <Testimonials />
         <FAQ />
+        <CTABanner />
         <Contact />
       </main>
       <Footer />
