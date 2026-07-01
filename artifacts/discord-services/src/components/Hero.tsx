@@ -2,53 +2,53 @@ import { Link } from "wouter";
 
 const products = [
   {
-    id: "discord",
+    id: "portal",
     order: { desktop: 1, mobile: 3 },
-    name: "Discord Access",
+    name: "Professional Member Portal Access",
     price: "$14",
     label: "One-Time Payment",
     features: [
-      "Permanent Discord server access",
-      "Private members-only channels",
-      "Exclusive resources and updates",
+      "Permanent access to our private professional portal",
+      "Curated expert resources and materials",
+      "Direct communication with our advisory team",
       "No expiry, no renewal ever",
     ],
     featured: false,
     cta: "Buy Now",
-    href: "/checkout?plan=Discord+Access&price=14",
+    href: "/checkout?plan=Professional+Member+Portal+Access&price=14",
   },
   {
     id: "bundle",
     order: { desktop: 2, mobile: 1 },
-    name: "Full Bundle",
+    name: "Complete Advisory Package",
     price: "$120",
     label: "One-Time Payment",
     features: [
-      "Permanent Discord server access",
-      "1x private live session (2 hours)",
-      "Full resource library for 30 days",
-      "Priority email delivery",
+      "Full Professional Member Portal Access",
+      "One 2-hour Expert Advisory Session",
+      "30 days of full premium resource access",
+      "Priority email delivery and support",
     ],
     featured: true,
     badge: "Best Value",
     cta: "Buy Now",
-    href: "/checkout?plan=Full+Bundle&price=120",
+    href: "/checkout?plan=Complete+Advisory+Package&price=120",
   },
   {
     id: "session",
     order: { desktop: 3, mobile: 2 },
-    name: "Live 1-on-1 Session",
+    name: "1-on-1 Expert Advisory Session",
     price: "$60",
     label: "One-Time Payment",
     features: [
-      "2-hour private live session",
-      "Fully personalised to your goals",
+      "2-hour private digital consultation",
+      "Senior advisor, fully personalised to your goals",
+      "Covers strategy, planning, and guidance",
       "Scheduled via email after purchase",
-      "No subscription required",
     ],
     featured: false,
     cta: "Buy Now",
-    href: "/checkout?plan=Live+1-on-1+Session&price=60",
+    href: "/checkout?plan=1-on-1+Expert+Advisory+Session&price=60",
   },
 ];
 
@@ -76,7 +76,7 @@ export function Hero() {
       }}
     >
       {/* Headline */}
-      <div style={{ textAlign: "center", marginBottom: 40, maxWidth: 680 }}>
+      <div style={{ textAlign: "center", marginBottom: 40, maxWidth: 720 }}>
         <p style={{ fontFamily: "Inter, sans-serif", fontSize: 13, fontWeight: 600, color: "#7C5CFC", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 16 }}>
           One-Time Payment. No Subscriptions. Ever.
         </p>
@@ -91,7 +91,7 @@ export function Hero() {
             margin: "0 0 14px",
           }}
         >
-          Pay Once. Access Forever.
+          Professional Digital Advisory Services
         </h1>
         <p
           style={{
@@ -102,7 +102,7 @@ export function Hero() {
             lineHeight: 1.6,
           }}
         >
-          Choose your product below and get instant access — no renewals, no surprises.
+          Expert guidance, premium resources, and private consultations — delivered digitally.
         </p>
       </div>
 
@@ -167,6 +167,7 @@ export function Hero() {
                   color: "#fff",
                   margin: "0 0 16px",
                   paddingRight: p.badge ? 80 : 0,
+                  lineHeight: 1.3,
                 }}
                 className="card-name"
               >
@@ -209,6 +210,10 @@ export function Hero() {
                   </li>
                 ))}
               </ul>
+
+              <p style={{ fontFamily: "Inter, sans-serif", fontSize: 11, color: "#9A9AAF", margin: "0 0 16px", lineHeight: 1.5 }}>
+                After purchase: confirmation email with Order ID and full service access instructions sent immediately.
+              </p>
 
               <Link
                 href={p.href}

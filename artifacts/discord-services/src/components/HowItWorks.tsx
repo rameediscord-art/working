@@ -3,18 +3,18 @@ import { motion } from "framer-motion";
 const steps = [
   {
     number: "1",
-    title: "Choose your product",
-    description: "Pick from Discord Access, a Live Session, or the Full Bundle — all one-time payments.",
+    title: "Select Your Service",
+    description: "Choose the advisory package that best matches your professional needs from our three service tiers.",
   },
   {
     number: "2",
-    title: "Complete your purchase",
-    description: "Enter your name and email, then submit. No card stored, no accounts required.",
+    title: "Complete Your Purchase",
+    description: "Enter your name and email, then submit. Secure one-time payment processed through Paddle — no card stored, no account required.",
   },
   {
     number: "3",
-    title: "Get instant access",
-    description: "You receive an Order ID by email. We deliver your product within a few hours.",
+    title: "Receive Instant Confirmation",
+    description: "Your Order ID and service access details are sent to your email immediately. Our team follows up within 24 hours to deliver your service.",
   },
 ];
 

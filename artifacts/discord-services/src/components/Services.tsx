@@ -1,11 +1,10 @@
 import { motion } from "framer-motion";
 
-function DiscordIcon() {
+function PortalIcon() {
   return (
     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h14l2 3V6a2 2 0 00-2-2z" stroke="#7C5CFC" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-      <circle cx="9" cy="12" r="1.2" fill="#7C5CFC"/>
-      <circle cx="15" cy="12" r="1.2" fill="#7C5CFC"/>
+      <rect x="3" y="3" width="18" height="18" rx="3" stroke="#7C5CFC" strokeWidth="1.8"/>
+      <path d="M3 9h18M9 21V9" stroke="#7C5CFC" strokeWidth="1.8" strokeLinecap="round"/>
     </svg>
   );
 }
@@ -29,19 +28,19 @@ function BundleIcon() {
 
 const items = [
   {
-    icon: <DiscordIcon />,
-    name: "Discord Access",
-    desc: "Permanent entry to the private server. Pay once, stay in forever. No link expiry, no re-purchases.",
+    icon: <PortalIcon />,
+    name: "Professional Member Portal Access",
+    desc: "Permanent access to our private digital portal containing expert resources, curated materials, and direct communication with our advisory team — all in one place.",
   },
   {
     icon: <SessionIcon />,
-    name: "Live 1-on-1 Session",
-    desc: "Two hours of focused, private live coaching scheduled directly after your purchase via email.",
+    name: "Expert Advisory Session",
+    desc: "A private 2-hour one-on-one digital consultation with a senior professional advisor. Fully personalised to your goals, scheduled via email immediately after your purchase is confirmed.",
   },
   {
     icon: <BundleIcon />,
-    name: "Full Bundle",
-    desc: "Everything included — permanent Discord access, a live session, and full resource library for 30 days.",
+    name: "Complete Advisory Package",
+    desc: "Everything included in our portal access and advisory session, bundled together with 30 days of full premium resource access. Our highest-value service offering.",
   },
 ];
 
@@ -57,7 +56,7 @@ export function Services() {
             What You Get
           </h2>
           <p style={{ fontFamily: "Inter, sans-serif", fontSize: 16, color: "#9A9AAF", margin: 0, maxWidth: 480, marginLeft: "auto", marginRight: "auto" }}>
-            Three products. Everything clearly described. No fluff.
+            Three professional service tiers. Everything clearly defined. No ambiguity.
           </p>
         </div>
 

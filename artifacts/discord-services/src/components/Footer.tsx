@@ -6,39 +6,39 @@ export function Footer() {
       <div style={{ maxWidth: 1080, margin: "0 auto" }}>
         {/* Logo + tagline */}
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: 32, textAlign: "center" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
             <div style={{ width: 30, height: 30, borderRadius: 8, background: "linear-gradient(135deg, #7C5CFC, #9D7BFF)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "Outfit, sans-serif", fontWeight: 800, fontSize: 14, color: "#fff" }}>
               R
             </div>
             <span style={{ fontFamily: "Outfit, sans-serif", fontWeight: 700, fontSize: 17, color: "#fff" }}>Ramee Digital Services</span>
           </div>
+          <p style={{ fontFamily: "Inter, sans-serif", fontSize: 13, color: "#7C5CFC", margin: "0 0 6px", fontWeight: 600 }}>
+            Professional Digital Advisory Services
+          </p>
           <p style={{ fontFamily: "Inter, sans-serif", fontSize: 13, color: "#9A9AAF", margin: 0, maxWidth: 360 }}>
-            Exclusive digital products. One-time payments. No subscriptions.
+            Expert guidance, premium resources, and private consultations — delivered digitally.
           </p>
         </div>
 
         {/* Links */}
         <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "12px 24px", marginBottom: 28 }} className="footer-links">
-          <Link href="/privacy" style={{ fontFamily: "Inter, sans-serif", fontSize: 13, color: "#9A9AAF", textDecoration: "none" }}
-            onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
-            onMouseLeave={e => (e.currentTarget.style.color = "#9A9AAF")}
-          >Privacy Policy</Link>
-          <Link href="/refund" style={{ fontFamily: "Inter, sans-serif", fontSize: 13, color: "#9A9AAF", textDecoration: "none" }}
-            onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
-            onMouseLeave={e => (e.currentTarget.style.color = "#9A9AAF")}
-          >Refund Policy</Link>
-          <Link href="/terms" style={{ fontFamily: "Inter, sans-serif", fontSize: 13, color: "#9A9AAF", textDecoration: "none" }}
-            onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
-            onMouseLeave={e => (e.currentTarget.style.color = "#9A9AAF")}
-          >Terms of Service</Link>
-          <Link href="/cookies" style={{ fontFamily: "Inter, sans-serif", fontSize: 13, color: "#9A9AAF", textDecoration: "none" }}
-            onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
-            onMouseLeave={e => (e.currentTarget.style.color = "#9A9AAF")}
-          >Cookie Policy</Link>
-          <Link href="/contact" style={{ fontFamily: "Inter, sans-serif", fontSize: 13, color: "#9A9AAF", textDecoration: "none" }}
-            onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
-            onMouseLeave={e => (e.currentTarget.style.color = "#9A9AAF")}
-          >Contact</Link>
+          {[
+            { label: "Privacy Policy", href: "/privacy" },
+            { label: "Refund Policy", href: "/refund" },
+            { label: "Terms of Service", href: "/terms" },
+            { label: "Cookie Policy", href: "/cookies" },
+            { label: "Contact", href: "/contact" },
+          ].map((l) => (
+            <Link
+              key={l.label}
+              href={l.href}
+              style={{ fontFamily: "Inter, sans-serif", fontSize: 13, color: "#9A9AAF", textDecoration: "none" }}
+              onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
+              onMouseLeave={e => (e.currentTarget.style.color = "#9A9AAF")}
+            >
+              {l.label}
+            </Link>
+          ))}
         </div>
 
         {/* Copyright */}

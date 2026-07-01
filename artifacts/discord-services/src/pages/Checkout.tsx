@@ -21,21 +21,21 @@ import { useToast } from "@/hooks/use-toast";
 
 const PRODUCTS = [
   {
-    name: "Discord Access",
+    name: "Professional Member Portal Access",
     price: "14.00",
-    description: "Permanent access to the private Discord server",
+    description: "Permanent access to our private professional portal with curated expert resources",
     badge: null,
   },
   {
-    name: "Live 1-on-1 Session",
+    name: "1-on-1 Expert Advisory Session",
     price: "60.00",
-    description: "One private live session, 2 hours, scheduled after purchase",
+    description: "2-hour private digital consultation with a senior advisor, scheduled via email",
     badge: null,
   },
   {
-    name: "Full Bundle",
+    name: "Complete Advisory Package",
     price: "120.00",
-    description: "Discord Access + Live Session + full resource access (30 days)",
+    description: "Full portal access + advisory session + 30 days premium resource access",
     badge: "Best Value",
   },
 ];
@@ -43,7 +43,7 @@ const PRODUCTS = [
 const checkoutSchema = z.object({
   customerName: z.string().min(2, "Full name must be at least 2 characters."),
   customerEmail: z.string().email("Please enter a valid email address."),
-  planName: z.string().min(1, "Please select a product."),
+  planName: z.string().min(1, "Please select a service."),
   planPrice: z.string(),
 });
 
@@ -130,14 +130,14 @@ export function Checkout() {
             <div className="flex items-center justify-center gap-5 mb-8 text-xs text-muted-foreground">
               <span className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-emerald-400" /> SSL Secured</span>
               <span className="w-px h-4 bg-border" />
-              <span className="flex items-center gap-1.5"><Lock className="w-4 h-4 text-primary" /> Secure Checkout</span>
+              <span className="flex items-center gap-1.5"><Lock className="w-4 h-4 text-primary" /> Powered by Paddle</span>
               <span className="w-px h-4 bg-border" />
               <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-400" /> One-Time Payment</span>
             </div>
 
-            {/* Product selector */}
+            {/* Service selector */}
             <div className="mb-8">
-              <p className="text-sm font-medium text-muted-foreground mb-3">Select your product:</p>
+              <p className="text-sm font-medium text-muted-foreground mb-3">Select your service:</p>
               <div className="grid grid-cols-1 gap-3">
                 {PRODUCTS.map((product) => {
                   const isSelected = selectedProduct?.name === product.name;
@@ -215,7 +215,7 @@ export function Checkout() {
                         <p className="text-sm font-semibold">{selectedProduct.name}</p>
                         <p className="text-xs text-muted-foreground">One-Time Payment</p>
                       </div>
-                      <span className="text-2xl font-bold text-foreground">${selectedProduct.price} <span className="text-sm text-muted-foreground font-normal">USD</span></span>
+                      <span className="text-2xl font-bold text-foreground shrink-0 ml-4">${selectedProduct.price} <span className="text-sm text-muted-foreground font-normal">USD</span></span>
                     </div>
                   )}
 
@@ -232,7 +232,7 @@ export function Checkout() {
                     <a href="/terms" className="text-primary hover:underline">Terms of Service</a>
                     {" "}and{" "}
                     <a href="/privacy" className="text-primary hover:underline">Privacy Policy</a>.
-                    You will be contacted at your email after purchase.
+                    You will receive a confirmation email with your Order ID after purchase.
                   </p>
                 </form>
               </Form>

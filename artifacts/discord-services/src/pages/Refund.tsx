@@ -32,7 +32,7 @@ export function Refund() {
               <h2 className="text-xl font-semibold text-foreground mb-3">3. What Does Not Qualify for a Refund</h2>
               <p>Refunds will not be issued in the following cases:</p>
               <ul className="list-disc pl-6 space-y-2 mt-3">
-                <li>You have already accessed, used, or received the digital product (e.g. Discord invite accepted, session completed)</li>
+                <li>You have already accessed, used, or received the digital service (e.g. portal access granted, advisory session completed)</li>
                 <li>You changed your mind after purchase</li>
                 <li>You purchased the wrong product by mistake — please contact us before purchasing if unsure</li>
                 <li>Your refund request is submitted after the 7-day window</li>
@@ -41,8 +41,8 @@ export function Refund() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-foreground mb-3">4. Live Session Cancellation</h2>
-              <p>If you have purchased a Live 1-on-1 Session or the Full Bundle and the session has not yet been scheduled or delivered, you may request a refund within the 7-day window. If the session has already taken place, it is non-refundable.</p>
+              <h2 className="text-xl font-semibold text-foreground mb-3">4. Advisory Session Cancellation</h2>
+              <p>If you have purchased a 1-on-1 Expert Advisory Session or the Complete Advisory Package and the session has not yet been scheduled or delivered, you may request a refund within the 7-day window. If the session has already taken place, it is non-refundable.</p>
             </section>
 
             <section>

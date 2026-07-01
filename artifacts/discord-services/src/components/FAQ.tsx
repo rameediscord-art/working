@@ -4,24 +4,32 @@ import { ChevronDown } from "lucide-react";
 
 const faqs = [
   {
-    question: "What do I get with Discord Access?",
-    answer: "You get permanent access to our private Discord server — including all members-only channels, resources, and updates. This is a one-time payment. There is no expiry date and you will never be asked to pay again.",
+    question: "What services do you provide?",
+    answer: "We provide professional digital advisory services including expert consultation sessions, curated resource access, and comprehensive advisory packages — all delivered online.",
   },
   {
-    question: "How do I schedule my Live Session after purchase?",
-    answer: "After your order is confirmed you will receive an email from us. We will reach out to you at the email address you provided at checkout to schedule the 2-hour session at a time that works for you.",
+    question: "What do I receive after purchasing the Member Portal Access?",
+    answer: "You will receive a confirmation email with your Order ID and full instructions to access our private professional portal, including all resources and materials. Access is permanent with no expiry.",
   },
   {
-    question: "What is included in the Full Bundle?",
-    answer: "The Full Bundle includes everything: permanent Discord server access, one 2-hour private live session, and full access to all resources and materials for 30 days. It is the best-value option and covers everything we offer in a single one-time payment.",
+    question: "How do I schedule my Expert Advisory Session after purchase?",
+    answer: "After your payment is confirmed, you will receive an email at the address you provided. Our team will contact you within 24 hours to schedule your 2-hour session at a time that works for you.",
   },
   {
-    question: "Do you offer refunds?",
-    answer: "Yes. We offer a 7-day refund window from your purchase date. To request a refund, email rameediscord@gmail.com with your Order ID. Please review our Refund Policy page for the full terms.",
+    question: "What is included in the Complete Advisory Package?",
+    answer: "The Complete Advisory Package includes permanent Member Portal Access, one 2-hour Expert Advisory Session, and 30 days of full premium resource access — everything we offer in a single purchase.",
   },
   {
-    question: "How will I receive my access after payment?",
-    answer: "Immediately after placing your order you will receive a confirmation email containing your unique Order ID. Our team will then contact you within a few hours to deliver your product — whether that is a Discord invite link, a session scheduling message, or both.",
+    question: "Is this a subscription or recurring charge?",
+    answer: "No. Every purchase is a one-time payment. You will never be charged again automatically. There are no subscriptions, billing cycles, or renewal charges of any kind.",
+  },
+  {
+    question: "What is your refund policy?",
+    answer: "We offer a 7-day refund window from the date of purchase. To request a refund, email rameediscord@gmail.com with your Order ID. Full details are on our Refund Policy page.",
+  },
+  {
+    question: "Is my payment secure?",
+    answer: "Yes. All payments are processed securely through Paddle, a trusted global payment processor. We never store your card or banking details.",
   },
 ];
 
@@ -39,7 +47,7 @@ export function FAQ() {
             Frequently Asked Questions
           </h2>
           <p style={{ fontFamily: "Inter, sans-serif", fontSize: 16, color: "#9A9AAF", margin: 0 }}>
-            Everything you need to know before buying.
+            Everything you need to know before purchasing.
           </p>
         </div>
 

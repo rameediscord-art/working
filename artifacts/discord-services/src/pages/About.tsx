@@ -1,74 +1,73 @@
 import { motion } from "framer-motion";
-import { Shield, Zap, Users, HeartHandshake } from "lucide-react";
+import { Shield, Zap, Star, HeartHandshake } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Link } from "wouter";
 
 const values = [
   {
-    icon: <Shield className="w-6 h-6 text-primary" />,
+    icon: <Shield className="w-6 h-6" style={{ color: "#7C5CFC" }} />,
     title: "Transparency",
-    description: "Clear pricing, no hidden fees, and honest descriptions of every service we offer.",
+    description: "Clear pricing, clear deliverables, and straightforward terms — no hidden fees, no ambiguity.",
   },
   {
-    icon: <Zap className="w-6 h-6 text-secondary" />,
+    icon: <Zap className="w-6 h-6" style={{ color: "#7C5CFC" }} />,
     title: "Fast Delivery",
-    description: "Discord access and session scheduling handled within a few hours of purchase — no delays.",
+    description: "Service access and session scheduling handled within 24 hours of purchase confirmation — no delays.",
   },
   {
-    icon: <Users className="w-6 h-6 text-emerald-400" />,
-    title: "Customer First",
-    description: "Every decision we make is guided by what is best for our customers.",
+    icon: <Star className="w-6 h-6" style={{ color: "#7C5CFC" }} />,
+    title: "Professional Quality",
+    description: "Every service is results-focused, professionally delivered, and tailored to each client's specific goals.",
   },
   {
-    icon: <HeartHandshake className="w-6 h-6 text-pink-400" />,
-    title: "Reliability",
-    description: "99.8% uptime and responsive support available via email at all times.",
+    icon: <HeartHandshake className="w-6 h-6" style={{ color: "#7C5CFC" }} />,
+    title: "Client-First",
+    description: "Every decision we make is guided by what delivers the most value to our clients.",
   },
 ];
 
 export function About() {
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col">
+    <div style={{ minHeight: "100vh", background: "#0A0A0F", color: "#fff", display: "flex", flexDirection: "column" }}>
       <Navbar />
-      <main className="flex-1 pt-24 pb-16">
-        <div className="container mx-auto px-4 md:px-6 max-w-4xl">
+      <main style={{ flex: 1, paddingTop: 96, paddingBottom: 64 }}>
+        <div style={{ maxWidth: 860, margin: "0 auto", padding: "0 20px" }}>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            style={{ textAlign: "center", marginBottom: 64 }}
           >
-            <div className="inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-sm font-medium text-primary mb-6">
-              <span className="flex h-2 w-2 rounded-full bg-primary mr-2 animate-pulse" />
-              About Ramee Digital Services
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-              Who We Are
+            <p style={{ fontFamily: "Inter, sans-serif", fontSize: 13, fontWeight: 600, color: "#7C5CFC", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 16 }}>
+              About Us
+            </p>
+            <h1 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 700, fontSize: "clamp(32px, 5vw, 48px)", lineHeight: 1.15, margin: "0 0 20px" }}>
+              Professional Digital Advisory Services
             </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Ramee Digital Services offers exclusive digital products — private Discord access, live one-on-one sessions, and full bundles — all as simple, one-time purchases with no subscriptions.
+            <p style={{ fontFamily: "Inter, sans-serif", fontSize: 17, color: "#9A9AAF", maxWidth: 640, margin: "0 auto", lineHeight: 1.7 }}>
+              We are a professional digital services provider offering expert advisory sessions, curated educational resources, and private consultation packages for individuals and professionals seeking structured digital guidance.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, marginBottom: 64 }} className="about-grid">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-2xl font-bold mb-4">What We Do</h2>
-              <div className="space-y-4 text-muted-foreground leading-relaxed">
-                <p>
-                  We offer three focused digital products: permanent Discord server access, private live sessions, and a full bundle that includes everything. Every purchase is a one-time payment — no subscriptions, no recurring charges, no renewals.
+              <h2 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 700, fontSize: 22, color: "#fff", margin: "0 0 16px" }}>What We Do</h2>
+              <div style={{ fontFamily: "Inter, sans-serif", fontSize: 15, color: "#9A9AAF", lineHeight: 1.75, display: "flex", flexDirection: "column", gap: 14 }}>
+                <p style={{ margin: 0 }}>
+                  Our team delivers high-quality, results-focused services entirely online. We offer three professional service tiers: Member Portal Access, Expert Advisory Sessions, and our Complete Advisory Package — all as one-time purchases with no subscriptions or recurring charges.
                 </p>
-                <p>
-                  Every product is clearly described before you buy. We believe customers deserve to know exactly what they are purchasing — no vague promises, no surprise charges.
+                <p style={{ margin: 0 }}>
+                  Every service is clearly described before purchase. We believe clients deserve to know exactly what they are receiving — transparent pricing, transparent deliverables, and a straightforward process from start to finish.
                 </p>
-                <p>
-                  After every purchase, you receive an Order ID by email. Our team will contact you to deliver your product — usually within a few hours of your order being placed.
+                <p style={{ margin: 0 }}>
+                  After every purchase, clients receive an Order ID by email. Our team contacts you within 24 hours to deliver your service — whether that is portal access, session scheduling, or both.
                 </p>
               </div>
             </motion.div>
@@ -79,16 +78,16 @@ export function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-2xl font-bold mb-4">Who We Serve</h2>
-              <div className="space-y-4 text-muted-foreground leading-relaxed">
-                <p>
-                  We serve anyone looking for exclusive community access, personalised coaching, or a complete bundle of digital services — delivered simply and without unnecessary complexity.
+              <h2 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 700, fontSize: 22, color: "#fff", margin: "0 0 16px" }}>Who We Serve</h2>
+              <div style={{ fontFamily: "Inter, sans-serif", fontSize: 15, color: "#9A9AAF", lineHeight: 1.75, display: "flex", flexDirection: "column", gap: 14 }}>
+                <p style={{ margin: 0 }}>
+                  We serve individuals and professionals who want structured digital guidance, expert one-on-one consultation, and access to curated professional resources — all delivered without unnecessary complexity.
                 </p>
-                <p>
-                  Whether you want permanent access to our private Discord server, a dedicated two-hour live session tailored to your goals, or the full bundle that covers everything — there is a product for you.
+                <p style={{ margin: 0 }}>
+                  Whether you need permanent access to our professional resource portal, a dedicated two-hour advisory session tailored to your goals, or the complete package that covers everything — there is a service for you.
                 </p>
-                <p>
-                  We serve thousands of customers and are committed to delivering quality, reliability, and responsive support every step of the way.
+                <p style={{ margin: 0 }}>
+                  Every client receives dedicated attention, premium materials, and direct access to our advisory network. We operate with full transparency — no vague promises, no hidden charges.
                 </p>
               </div>
             </motion.div>
@@ -99,18 +98,18 @@ export function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="mb-16"
+            style={{ marginBottom: 64 }}
           >
-            <h2 className="text-2xl font-bold text-center mb-10">Our Values</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <h2 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 700, fontSize: 22, color: "#fff", textAlign: "center", margin: "0 0 36px" }}>Our Values</h2>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }} className="values-grid">
               {values.map((value, i) => (
-                <div key={i} className="flex gap-4 p-6 rounded-2xl bg-card/40 border border-border/50 hover:border-primary/30 transition-colors">
-                  <div className="w-12 h-12 rounded-xl bg-background/50 border border-border/50 flex items-center justify-center shrink-0">
+                <div key={i} style={{ display: "flex", gap: 16, padding: 24, borderRadius: 16, background: "#13131A", border: "1px solid #2A2A3A" }}>
+                  <div style={{ width: 48, height: 48, borderRadius: 12, background: "rgba(124,92,252,0.1)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                     {value.icon}
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-1">{value.title}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">{value.description}</p>
+                    <h3 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 700, fontSize: 16, color: "#fff", margin: "0 0 6px" }}>{value.title}</h3>
+                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: 14, color: "#9A9AAF", margin: 0, lineHeight: 1.65 }}>{value.description}</p>
                   </div>
                 </div>
               ))}
@@ -122,22 +121,22 @@ export function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-center p-8 rounded-2xl bg-card/40 border border-border/50"
+            style={{ textAlign: "center", padding: 40, borderRadius: 20, background: "#13131A", border: "1px solid #2A2A3A" }}
           >
-            <h2 className="text-2xl font-bold mb-4">Get in Touch</h2>
-            <p className="text-muted-foreground mb-6">
-              Questions about our products or want to learn more? We're happy to help.
+            <h2 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 700, fontSize: 22, color: "#fff", margin: "0 0 12px" }}>Get in Touch</h2>
+            <p style={{ fontFamily: "Inter, sans-serif", fontSize: 15, color: "#9A9AAF", margin: "0 0 24px" }}>
+              Questions about our services? We respond to every inquiry within 12 hours.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 12 }} className="contact-buttons">
               <a
                 href="mailto:rameediscord@gmail.com"
-                className="inline-flex h-11 items-center justify-center rounded-md bg-primary px-6 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90"
+                style={{ display: "inline-block", background: "#7C5CFC", color: "#fff", fontFamily: "Inter, sans-serif", fontWeight: 600, fontSize: 14, padding: "12px 28px", borderRadius: 10, textDecoration: "none" }}
               >
                 rameediscord@gmail.com
               </a>
               <Link
                 href="/contact"
-                className="inline-flex h-11 items-center justify-center rounded-md border border-input bg-transparent px-6 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground"
+                style={{ display: "inline-block", background: "transparent", color: "#9A9AAF", fontFamily: "Inter, sans-serif", fontWeight: 500, fontSize: 14, padding: "12px 28px", borderRadius: 10, textDecoration: "none", border: "1px solid #2A2A3A" }}
               >
                 Contact Form
               </Link>
@@ -147,6 +146,14 @@ export function About() {
         </div>
       </main>
       <Footer />
+
+      <style>{`
+        @media (max-width: 640px) {
+          .about-grid { grid-template-columns: 1fr !important; }
+          .values-grid { grid-template-columns: 1fr !important; }
+          .contact-buttons { flex-direction: column !important; }
+        }
+      `}</style>
     </div>
   );
 }
