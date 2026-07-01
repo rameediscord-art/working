@@ -1,0 +1,30 @@
+Act as an expert cybersecurity engineer. Create a comprehensive, modular Web Security Scanner application inside this Replit environment. 
+
+The application must include the following components and features:
+
+1. ARCHITECTURE & USER INTERFACE
+- Build a clean, modern dashboard (using Python Streamlit or Node.js/Express with HTML).
+- Include an input field for a target URL.
+- Include a dashboard to display vulnerability status, severity charts, and historical scans.
+
+2. SCANNING ENGINE (MODULAR PYTHON/NODE SCRIPT)
+- Passive Recon: Fetch and analyze DNS records (SPF, DKIM, DMARC) and HTTP security headers (CSP, HSTS, X-Frame-Options, X-Content-Type-Options).
+- Cookie Auditor: Inspect active cookies for 'Secure', 'HttpOnly', and 'SameSite' flags.
+- Endpoint Discovery: Implement a basic directory/endpoint crawler to look for common exposed paths (e.g., /admin, /.env, /config.json, /wp-admin).
+- Outdated Library Check: Inspect page source script tags to detect known outdated frontend libraries.
+- Form/Input Tester: Parse HTML forms and send basic, safe test payloads to check for reflected XSS and SQL Injection vulnerabilities.
+
+3. REPORTING ENGINE
+- Generate an interactive on-screen report categorized by severity (Critical, High, Medium, Low, Info).
+- For every vulnerability found, provide:
+  * Description of the security risk.
+  * The exact endpoint or header where it was detected.
+  * Clear, actionable remediation steps (code-level or server configuration fixes).
+- Provide a button to export the final report as a downloadable PDF or JSON file.
+
+4. SAFETY & EXECUTION BOUNDARIES
+- Ensure all scanning methods are strictly non-destructive.
+- Do not attempt aggressive brute-forcing or denial-of-service (DoS) testing.
+- Include a mandatory checkbox in the UI for the user to confirm they have permission to scan the target URL.
+
+Initialize the workspace, install all required dependencies (like requests, beautifulsoup4, dnspython, etc.), and run the application so it is ready to use in the Replit preview window.
